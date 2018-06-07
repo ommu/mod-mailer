@@ -1,0 +1,50 @@
+{
+	"name": "ommu/mod-mailer",
+	"description": "Mailer Module from Ommu Platform",
+	"keywords": [
+		"module",
+		"mailer",
+		"mail",
+		"template",
+		"ommu",
+		"ommu-platform",
+		"yii2"
+	],
+	"homepage": "https://github.com/ommu/mod-mailer",
+	"type": "ommu-module",
+	"license": "Apache-2.0",
+	"support": {
+		"issues": "https://github.com/ommu/mod-mailer/issues",
+		"wiki": "https://github.com/ommu/mod-mailer/wiki",
+		"source": "https://github.com/ommu/mod-mailer"
+	},
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/ommu/mod-mailer.git"
+	},
+	"authors": [
+		{
+			"name": "Putra Sudaryanto",
+			"email": "putra@sudaryanto.id",
+			"homepage": "https://putra.sudaryanto.id",
+			"role": "Creator"
+		}
+	],
+	"require": {
+		"php": "~7.0",
+		"oomphinc/composer-installers-extender": "^1.0",
+		"yiisoft/yii2": "~2.0.13",
+		"yiisoft/yii2-jui": "^2.0",
+		"mdmsoft/yii2-admin": "^2.7",
+		"components/jqueryui": "~1.10",
+		"ommu/yii2-traits": "*"
+	},
+	"autoload": {
+		"psr-4": {
+			"ommu\\member\\": ""
+		}
+	},
+	"suggest": {
+		"components/jqueryui": "move to bower/jquery-ui or bower-asset/jquery-ui"
+	}
+}
