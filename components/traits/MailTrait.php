@@ -23,8 +23,8 @@ namespace ommu\mailer\components\traits;
 
 use Yii;
 use yii\helpers\Html;
-use ommu\mailer\models\CoreMailSetting;
-use ommu\mailer\models\CoreMailTemplate;
+use ommu\mailer\models\MailerSetting;
+use ommu\mailer\models\MailerMailTemplate;
 
 trait MailTrait
 {
@@ -35,7 +35,7 @@ trait MailTrait
 	 */
 	public function getMailFrom()
 	{
-		$model = CoreMailSetting::find()
+		$model = MailerSetting::find()
 			->select(['mail_name','mail_from'])
 			->where(['id' => 1])
 			->one();
@@ -107,7 +107,7 @@ trait MailTrait
 	 */
 	public function parseMailSubject($template) 
 	{
-		$model = CoreMailTemplate::find()
+		$model = MailerMailTemplate::find()
 			->select(['subject'])
 			->where(['template' => $template])
 			->one();
@@ -124,7 +124,7 @@ trait MailTrait
 	 */
 	public function parseMailBody($template, $attributes=null) 
 	{
-		$model = CoreMailTemplate::find()
+		$model = MailerMailTemplate::find()
 			->select(['template_file'])
 			->where(['template' => $template])
 			->one();
