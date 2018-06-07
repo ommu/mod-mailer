@@ -2,7 +2,7 @@
 /**
  * Mailer Settings (mailer-setting)
  * @var $this yii\web\View
- * @var $this app\controllers\SettingController
+ * @var $this ommu\mailer\controllers\SettingController
  * @var $model ommu\mailer\models\MailerSetting
  * @var $form yii\widgets\ActiveForm
  *

@@ -22,7 +22,7 @@
  *
  */
  
-namespace app\controllers;
+namespace ommu\mailer\controllers;
 
 use Yii;
 use yii\filters\VerbFilter;

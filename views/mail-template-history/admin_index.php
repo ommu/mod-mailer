@@ -2,7 +2,7 @@
 /**
  * Mailer Mail Template Histories (mailer-mail-template-history)
  * @var $this yii\web\View
- * @var $this app\controllers\MailTemplateHistoryController
+ * @var $this ommu\mailer\controllers\MailTemplateHistoryController
  * @var $model ommu\mailer\models\MailerMailTemplateHistory
  *
  * @author Putra Sudaryanto <putra@sudaryanto.id>

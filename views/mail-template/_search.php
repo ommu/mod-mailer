@@ -2,7 +2,7 @@
 /**
  * Mailer Mail Templates (mailer-mail-template)
  * @var $this yii\web\View
- * @var $this app\controllers\MailTemplateController
+ * @var $this ommu\mailer\controllers\MailTemplateController
  * @var $model ommu\mailer\models\search\MailerMailTemplate
  * @var $form yii\widgets\ActiveForm
  *

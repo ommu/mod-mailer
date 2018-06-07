@@ -26,7 +26,7 @@
  *
  */
 
-namespace app\models;
+namespace ommu\mailer\models;
 
 use Yii;
 use yii\helpers\Url;
