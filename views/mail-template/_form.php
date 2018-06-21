@@ -16,6 +16,19 @@
 
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
+use ommu\mailer\models\MailerMailTemplate;
+
+$js = <<<JS
+	$('.field-type select[name="type"]').on('change', function() {
+		var id = $(this).val();
+		if(id != 'content') {
+			$('div#header_footer').slideUp();
+		} else {
+			$('div#header_footer').slideDown();
+		}
+	});
+JS;
+	$this->registerJs($js, \yii\web\View::POS_READY);
 ?>
 
 <?php $form = ActiveForm::begin([
@@ -33,6 +46,24 @@ use yii\widgets\ActiveForm;
 <?php echo $form->field($model, 'subject', ['template' => '{label}<div class="col-md-9 col-sm-9 col-xs-12">{input}{error}</div>'])
 	->textInput(['maxlength' => true])
 	->label($model->getAttributeLabel('subject'), ['class'=>'control-label col-md-3 col-sm-3 col-xs-12']); ?>
+
+<?php echo $form->field($model, 'type', ['template' => '{label}<div class="col-md-9 col-sm-9 col-xs-12">{input}{error}</div>'])
+	->dropDownList(['content' => 'Content', 'header' => 'Header', 'footer' => 'Footer'])
+	->label($model->getAttributeLabel('type'), ['class'=>'control-label col-md-3 col-sm-3 col-xs-12']); ?>
+
+<div id="header_footer" class="mb-10">
+	<?php 
+	$header = MailerMailTemplate::getTemplate('header');
+	echo $form->field($model, 'header_footer[header]', ['template' => '{label}<div class="col-md-9 col-sm-9 col-xs-12">{input}{error}</div>'])
+		->dropDownList($header, ['prompt' => ''])
+		->label($model->getAttributeLabel('header_footer[header]'), ['class'=>'control-label col-md-3 col-sm-3 col-xs-12']); ?>
+		
+	<?php 
+	$footer = MailerMailTemplate::getTemplate('footer');
+	echo $form->field($model, 'header_footer[footer]', ['template' => '{label}<div class="col-md-9 col-sm-9 col-xs-12">{input}{error}</div>'])
+		->dropDownList($footer, ['prompt' => ''])
+		->label($model->getAttributeLabel('header_footer[footer]'), ['class'=>'control-label col-md-3 col-sm-3 col-xs-12']); ?>
+</div>
 
 <?php echo $form->field($model, 'template_file', ['template' => '{label}<div class="col-md-9 col-sm-9 col-xs-12">{input}{error}</div>'])
 	->textInput(['maxlength' => true])

@@ -13,6 +13,8 @@
  * The followings are the available columns in table "ommu_mailer_mail_template":
  * @property string $template
  * @property string $subject
+ * @property string $type
+ * @property string $header_footer
  * @property string $template_file
  * @property string $creation_date
  * @property integer $creation_id
@@ -37,7 +39,7 @@ class MailerMailTemplate extends \app\components\ActiveRecord
 {
 	use \ommu\traits\FileTrait;
 
-	public $gridForbiddenColumn = ['modified_date','modified_search'];
+	public $gridForbiddenColumn = ['header_footer','modified_date','modified_search'];
 
 	// Variable Search
 	public $creation_search;
@@ -65,10 +67,12 @@ class MailerMailTemplate extends \app\components\ActiveRecord
 	public function rules()
 	{
 		return [
-			[['template, subject', 'template_file'], 'required'],
+			[['template', 'subject', 'template_file'], 'required'],
 			[['creation_id', 'modified_id'], 'integer'],
+			[['type'], 'string'],
+			//[['header_footer'], 'serialize'],
 			[['creation_date', 'modified_date'], 'safe'],
-			[['template, subject'], 'string', 'max' => 64],
+			[['template', 'subject'], 'string', 'max' => 64],
 			[['template_file'], 'string', 'max' => 32],
 			[['template'], 'unique'],
 		];
@@ -82,6 +86,11 @@ class MailerMailTemplate extends \app\components\ActiveRecord
 		return [
 			'template' => Yii::t('app', 'Template'),
 			'subject' => Yii::t('app', 'Email Subject'),
+			'type' => Yii::t('app', 'Type'),
+			'header_footer' => Yii::t('app', 'Header Footer'),
+			'header_footer[i]' => Yii::t('app', 'Header Footer'),
+			'header_footer[header]' => Yii::t('app', 'Header'),
+			'header_footer[footer]' => Yii::t('app', 'Footer'),
 			'template_file' => Yii::t('app', 'Template File'),
 			'creation_date' => Yii::t('app', 'Creation Date'),
 			'creation_id' => Yii::t('app', 'Creation'),
@@ -149,6 +158,18 @@ class MailerMailTemplate extends \app\components\ActiveRecord
 				return $model->subject;
 			},
 		];
+		$this->templateColumns['type'] = [
+			'attribute' => 'type',
+			'value' => function($model, $key, $index, $column) {
+				return $model->type;
+			},
+		];
+		$this->templateColumns['header_footer'] = [
+			'attribute' => 'header_footer',
+			'value' => function($model, $key, $index, $column) {
+				return serialize($model->header_footer);
+			},
+		];
 		$this->templateColumns['template_file'] = [
 			'attribute' => 'template_file',
 			'value' => function($model, $key, $index, $column) {
@@ -208,12 +229,46 @@ class MailerMailTemplate extends \app\components\ActiveRecord
 	}
 
 	/**
+	 * function getTemplate
+	 */
+	public static function getTemplate($type=null,$array=true) 
+	{
+		$model = self::find()->alias('t');
+		if($type == null)
+			$model->andWhere(['t.type' => 'content']);
+		else
+			$model->andWhere(['t.type' => $type]);
+
+		$model = $model->orderBy('t.template ASC')->all();
+
+		if($array == true) {
+			$items = [];
+			if($model !== null) {
+				foreach($model as $val) {
+					$items[$val->template] = $val->template;
+				}
+				return $items;
+			} else
+				return false;
+		} else 
+			return $model;
+	}
+
+	/**
 	 * @param returnAlias set true jika ingin kembaliannya path alias atau false jika ingin string
 	 * relative path. default true.
 	 */
 	public static function getUploadPath($returnAlias=true) 
 	{
 		return ($returnAlias ? Yii::getAlias('@webroot/public/email') : 'public/email');
+	}
+
+	/**
+	 * after find attributes
+	 */
+	public function afterFind()
+	{
+		$this->header_footer = unserialize($this->header_footer);
 	}
 
 	/**
@@ -253,6 +308,7 @@ class MailerMailTemplate extends \app\components\ActiveRecord
 				$verwijderenPath = join('/', [self::getUploadPath(), 'verwijderen']);
 				$this->createUploadDirectory(self::getUploadPath());
 			}
+			$this->header_footer = serialize($this->header_footer);
 		}
 		return true;
 	}

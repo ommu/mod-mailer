@@ -35,6 +35,11 @@ $this->params['menu']['content'] = [
 	'attributes' => [
 		'template',
 		'subject',
+		'type',
+		[
+			'attribute' => 'header_footer',
+			'value' => serialize($model->header_footer),
+		],
 		'template_file',
 		[
 			'attribute' => 'creation_date',

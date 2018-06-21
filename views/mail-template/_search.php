@@ -25,6 +25,10 @@ use yii\widgets\ActiveForm;
 	]); ?>
 		<?php echo $form->field($model, 'subject');?>
 
+		<?php echo $form->field($model, 'type');?>
+
+		<?php echo $form->field($model, 'header_footer');?>
+
 		<?php echo $form->field($model, 'template_file');?>
 
 		<?php echo $form->field($model, 'creation_date')
