@@ -27,7 +27,7 @@ class MailerMailTemplate extends MailerMailTemplateModel
 	public function rules()
 	{
 		return [
-			[['template', 'subject', 'template_file', 'creation_date', 'modified_date', 'creation_search', 'modified_search'], 'safe'],
+			[['template', 'subject', 'type', 'header_footer', 'template_file', 'creation_date', 'modified_date', 'creation_search', 'modified_search'], 'safe'],
 			[['creation_id', 'modified_id'], 'integer'],
 		];
 	}
@@ -94,6 +94,7 @@ class MailerMailTemplate extends MailerMailTemplateModel
 
 		// grid filtering conditions
 		$query->andFilterWhere([
+			't.type' => $this->type,
 			'cast(t.creation_date as date)' => $this->creation_date,
 			't.creation_id' => isset($params['creation']) ? $params['creation'] : $this->creation_id,
 			'cast(t.modified_date as date)' => $this->modified_date,
@@ -102,6 +103,7 @@ class MailerMailTemplate extends MailerMailTemplateModel
 
 		$query->andFilterWhere(['like', 't.template', $this->template])
 			->andFilterWhere(['like', 't.subject', $this->subject])
+			->andFilterWhere(['like', 't.header_footer', $this->header_footer])
 			->andFilterWhere(['like', 't.template_file', $this->template_file])
 			->andFilterWhere(['like', 'creation.displayname', $this->creation_search])
 			->andFilterWhere(['like', 'modified.displayname', $this->modified_search]);

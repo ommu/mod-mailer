@@ -36,22 +36,22 @@ JS;
 		'class' => 'form-horizontal form-label-left',
 		//'enctype' => 'multipart/form-data',
 	],
-	'enableClientValidation' => true,
+	'enableClientValidation' => false,
 	'enableAjaxValidation' => false,
 	//'enableClientScript' => true,
 ]); ?>
 
 <?php //echo $form->errorSummary($model);?>
 
-<?php echo $form->field($model, 'subject', ['template' => '{label}<div class="col-md-9 col-sm-9 col-xs-12">{input}{error}</div>'])
-	->textInput(['maxlength' => true])
-	->label($model->getAttributeLabel('subject'), ['class'=>'control-label col-md-3 col-sm-3 col-xs-12']); ?>
-
 <?php echo $form->field($model, 'type', ['template' => '{label}<div class="col-md-9 col-sm-9 col-xs-12">{input}{error}</div>'])
 	->dropDownList(['content' => 'Content', 'header' => 'Header', 'footer' => 'Footer'])
 	->label($model->getAttributeLabel('type'), ['class'=>'control-label col-md-3 col-sm-3 col-xs-12']); ?>
 
 <div id="header_footer" class="mb-10">
+	<?php echo $form->field($model, 'subject', ['template' => '{label}<div class="col-md-9 col-sm-9 col-xs-12">{input}{error}</div>'])
+		->textInput(['maxlength' => true])
+		->label($model->getAttributeLabel('subject'), ['class'=>'control-label col-md-3 col-sm-3 col-xs-12']); ?>
+		
 	<?php 
 	$header = MailerMailTemplate::getTemplate('header');
 	echo $form->field($model, 'header_footer[header]', ['template' => '{label}<div class="col-md-9 col-sm-9 col-xs-12">{input}{error}</div>'])

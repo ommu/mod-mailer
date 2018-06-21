@@ -88,7 +88,6 @@ class MailerMailTemplate extends \app\components\ActiveRecord
 			'subject' => Yii::t('app', 'Email Subject'),
 			'type' => Yii::t('app', 'Type'),
 			'header_footer' => Yii::t('app', 'Header Footer'),
-			'header_footer[i]' => Yii::t('app', 'Header Footer'),
 			'header_footer[header]' => Yii::t('app', 'Header'),
 			'header_footer[footer]' => Yii::t('app', 'Footer'),
 			'template_file' => Yii::t('app', 'Template File'),
@@ -152,16 +151,17 @@ class MailerMailTemplate extends \app\components\ActiveRecord
 				return $model->template;
 			},
 		];
+		$this->templateColumns['type'] = [
+			'attribute' => 'type',
+			'filter' => ['content' => 'Content', 'header' => 'Header', 'footer' => 'Footer'],
+			'value' => function($model, $key, $index, $column) {
+				return $model->type;
+			},
+		];
 		$this->templateColumns['subject'] = [
 			'attribute' => 'subject',
 			'value' => function($model, $key, $index, $column) {
 				return $model->subject;
-			},
-		];
-		$this->templateColumns['type'] = [
-			'attribute' => 'type',
-			'value' => function($model, $key, $index, $column) {
-				return $model->type;
 			},
 		];
 		$this->templateColumns['header_footer'] = [
@@ -281,6 +281,9 @@ class MailerMailTemplate extends \app\components\ActiveRecord
 				$this->creation_id = !Yii::$app->user->isGuest ? Yii::$app->user->id : null;
 			else
 				$this->modified_id = !Yii::$app->user->isGuest ? Yii::$app->user->id : null;
+
+			if($this->type != 'content')
+				$this->subject = '-';
 		}
 		return true;
 	}
