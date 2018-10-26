@@ -192,7 +192,7 @@ class MailerSetting extends \app\components\ActiveRecord
 			'attribute' => 'mail_queueing',
 			'filter' => $this->filterYesNo(),
 			'value' => function($model, $key, $index, $column) {
-				return $model->mail_queueing ? Yii::t('app', 'Yes') : Yii::t('app', 'No');
+				return $this->filterYesNo($model->mail_queueing);
 			},
 			'contentOptions' => ['class'=>'center'],
 		];
@@ -200,7 +200,7 @@ class MailerSetting extends \app\components\ActiveRecord
 			'attribute' => 'mail_smtp',
 			'filter' => $this->filterYesNo(),
 			'value' => function($model, $key, $index, $column) {
-				return $model->mail_smtp ? Yii::t('app', 'Yes') : Yii::t('app', 'No');
+				return $this->filterYesNo($model->mail_smtp);
 			},
 			'contentOptions' => ['class'=>'center'],
 		];
@@ -208,7 +208,7 @@ class MailerSetting extends \app\components\ActiveRecord
 			'attribute' => 'smtp_authentication',
 			'filter' => $this->filterYesNo(),
 			'value' => function($model, $key, $index, $column) {
-				return $model->smtp_authentication ? Yii::t('app', 'Yes') : Yii::t('app', 'No');
+				return $this->filterYesNo($model->smtp_authentication);
 			},
 			'contentOptions' => ['class'=>'center'],
 		];
@@ -216,7 +216,7 @@ class MailerSetting extends \app\components\ActiveRecord
 			'attribute' => 'smtp_ssl',
 			'filter' => $this->filterYesNo(),
 			'value' => function($model, $key, $index, $column) {
-				return $model->smtp_ssl ? Yii::t('app', 'Yes') : Yii::t('app', 'No');
+				return $this->filterYesNo($model->smtp_ssl);
 			},
 			'contentOptions' => ['class'=>'center'],
 		];
