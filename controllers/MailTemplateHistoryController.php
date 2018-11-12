@@ -34,7 +34,7 @@ use ommu\mailer\models\search\MailerMailTemplateHistory as MailerMailTemplateHis
 class MailTemplateHistoryController extends Controller
 {
 	/**
-	 * @inheritdoc
+	 * {@inheritdoc}
 	 */
 	public function behaviors()
 	{

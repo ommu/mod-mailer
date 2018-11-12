@@ -35,7 +35,7 @@ use ommu\mailer\models\search\MailerMailTemplate as MailerMailTemplateSearch;
 class MailTemplateController extends Controller
 {
 	/**
-	 * @inheritdoc
+	 * {@inheritdoc}
 	 */
 	public function behaviors()
 	{

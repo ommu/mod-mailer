@@ -102,7 +102,7 @@ class MailerMailTemplateHistory extends \app\components\ActiveRecord
 	}
 
 	/**
-	 * @inheritdoc
+	 * {@inheritdoc}
 	 * @return \ommu\mailer\models\query\MailerMailTemplateHistoryQuery the active query used by this AR class.
 	 */
 	public static function find()

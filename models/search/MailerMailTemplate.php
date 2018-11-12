@@ -22,7 +22,7 @@ use ommu\mailer\models\MailerMailTemplate as MailerMailTemplateModel;
 class MailerMailTemplate extends MailerMailTemplateModel
 {
 	/**
-	 * @inheritdoc
+	 * {@inheritdoc}
 	 */
 	public function rules()
 	{
@@ -33,7 +33,7 @@ class MailerMailTemplate extends MailerMailTemplateModel
 	}
 
 	/**
-	 * @inheritdoc
+	 * {@inheritdoc}
 	 */
 	public function scenarios()
 	{

@@ -25,7 +25,7 @@ class MailerMailTemplateHistoryQuery extends \yii\db\ActiveQuery
 	*/
 
 	/**
-	 * @inheritdoc
+	 * {@inheritdoc}
 	 * @return \ommu\mailer\models\MailerMailTemplateHistory[]|array
 	 */
 	public function all($db = null)
@@ -34,7 +34,7 @@ class MailerMailTemplateHistoryQuery extends \yii\db\ActiveQuery
 	}
 
 	/**
-	 * @inheritdoc
+	 * {@inheritdoc}
 	 * @return \ommu\mailer\models\MailerMailTemplateHistory|array|null
 	 */
 	public function one($db = null)

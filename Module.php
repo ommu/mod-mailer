@@ -17,12 +17,12 @@ class Module extends \app\components\Module
 	public $layout = 'main';
 
 	/**
-	 * @inheritdoc
+	 * {@inheritdoc}
 	 */
 	public $controllerNamespace = 'ommu\mailer\controllers';
 
 	/**
-	 * @inheritdoc
+	 * {@inheritdoc}
 	 */
 	public function init()
 	{

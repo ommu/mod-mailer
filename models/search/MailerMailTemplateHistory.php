@@ -22,7 +22,7 @@ use ommu\mailer\models\MailerMailTemplateHistory as MailerMailTemplateHistoryMod
 class MailerMailTemplateHistory extends MailerMailTemplateHistoryModel
 {
 	/**
-	 * @inheritdoc
+	 * {@inheritdoc}
 	 */
 	public function rules()
 	{
@@ -34,7 +34,7 @@ class MailerMailTemplateHistory extends MailerMailTemplateHistoryModel
 	}
 
 	/**
-	 * @inheritdoc
+	 * {@inheritdoc}
 	 */
 	public function scenarios()
 	{

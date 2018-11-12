@@ -33,7 +33,7 @@ use ommu\mailer\models\MailerSetting;
 class SettingController extends Controller
 {
 	/**
-	 * @inheritdoc
+	 * {@inheritdoc}
 	 */
 	public function behaviors()
 	{
