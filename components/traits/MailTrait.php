@@ -29,6 +29,25 @@ use ommu\mailer\models\MailerMailTemplate;
 trait MailTrait
 {
 	/**
+	 * getMailAdmin
+	 *
+	 * @return array
+	 */
+	public function getMailAdmin()
+	{
+		$model = MailerSetting::find()
+			->select(['mail_contact', 'mail_name'])
+			->where(['id' => 1])
+			->one();
+
+		if($model == null)
+			return false;
+		
+		$mail_name = $model->mail_name ? $model->mail_name : $model->mail_contact;
+		return [$model->mail_contact => $mail_name];
+	}
+
+	/**
 	 * getMailFrom
 	 *
 	 * @return array
@@ -36,7 +55,7 @@ trait MailTrait
 	public function getMailFrom()
 	{
 		$model = MailerSetting::find()
-			->select(['mail_name','mail_from'])
+			->select(['mail_name', 'mail_from'])
 			->where(['id' => 1])
 			->one();
 
