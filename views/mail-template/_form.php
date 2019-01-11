@@ -15,7 +15,7 @@
  */
 
 use yii\helpers\Html;
-use yii\widgets\ActiveForm;
+use app\components\ActiveForm;
 use ommu\mailer\models\MailerMailTemplate;
 
 $js = <<<JS
@@ -32,10 +32,6 @@ JS;
 ?>
 
 <?php $form = ActiveForm::begin([
-	'options' => [
-		'class' => 'form-horizontal form-label-left',
-		//'enctype' => 'multipart/form-data',
-	],
 	'enableClientValidation' => false,
 	'enableAjaxValidation' => false,
 	//'enableClientScript' => true,

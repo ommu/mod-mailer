@@ -15,7 +15,7 @@
  */
 
 use yii\helpers\Html;
-use yii\widgets\ActiveForm;
+use app\components\ActiveForm;
 
 $js = <<<JS
 	$('.field-mail_smtp input[name="mail_smtp"]').on('change', function() {
@@ -39,10 +39,6 @@ JS;
 ?>
 
 <?php $form = ActiveForm::begin([
-	'options' => [
-		'class' => 'form-horizontal form-label-left',
-		//'enctype' => 'multipart/form-data',
-	],
 	'enableClientValidation' => false,
 	'enableAjaxValidation' => false,
 	//'enableClientScript' => true,
