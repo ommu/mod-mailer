@@ -38,7 +38,6 @@ use ommu\users\models\Users;
 class MailerMailTemplate extends \app\components\ActiveRecord
 {
 	use \ommu\traits\FileTrait;
-	use \ommu\traits\UtilityTrait;
 
 	public $gridForbiddenColumn = ['header_footer','modified_date','modified_search'];
 
