@@ -126,14 +126,18 @@ trait MailTrait
 	 */
 	public function parseMailSubject($template) 
 	{
+		$module = strtolower(Yii::$app->controller->module->id);
+		if($module)
+			$template = join('_', [$module, $template]);
+
 		$model = MailerMailTemplate::find()
 			->select(['subject'])
 			->where(['template' => $template])
 			->one();
 		
-		$message = $this->parseTemplate($model->subject, ['sitename' => Yii::$app->name]);
+		$subject = $this->parseTemplate($model->subject, ['sitename' => Yii::$app->name]);
 		
-		return $message;
+		return $subject;
 	}
 
 	/**
@@ -143,6 +147,10 @@ trait MailTrait
 	 */
 	public function parseMailBody($template, $attributes=null) 
 	{
+		$module = strtolower(Yii::$app->controller->module->id);
+		if($module)
+			$template = join('_', [$module, $template]);
+
 		$model = MailerMailTemplate::find()
 			->select(['template_file'])
 			->where(['template' => $template])
