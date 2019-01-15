@@ -73,7 +73,7 @@ trait MailTrait
 	 */
 	public function getMailTemplatePath()
 	{
-		$templatePath = join('/', [Yii::getAlias('@public'), 'email', 'template']);
+		$templatePath = Yii::getAlias(Yii::$app->params['mailTemplatePath']);
 
 		return $templatePath;
 	}
