@@ -237,8 +237,10 @@ class MailerSetting extends \app\components\ActiveRecord
 	public function beforeValidate() 
 	{
 		if(parent::beforeValidate()) {
-			if(!$this->isNewRecord)
-				$this->modified_id = !Yii::$app->user->isGuest ? Yii::$app->user->id : null;
+			if(!$this->isNewRecord) {
+				if($this->modified_id == null)
+					$this->modified_id = !Yii::$app->user->isGuest ? Yii::$app->user->id : null;
+			}
 				
 			if($this->mail_smtp) {
 				if($this->smtp_address == '')
