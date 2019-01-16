@@ -1,7 +1,7 @@
 <?php
 /**
  * MailTemplateHistoryController
- * @var $this yii\web\View
+ * @var $this app\components\View
  * @var $model ommu\mailer\models\MailerMailTemplateHistory
  *
  * MailTemplateHistoryController implements the CRUD actions for MailerMailTemplateHistory model.

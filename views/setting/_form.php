@@ -1,10 +1,10 @@
 <?php
 /**
  * Mailer Settings (mailer-setting)
- * @var $this yii\web\View
+ * @var $this app\components\View
  * @var $this ommu\mailer\controllers\SettingController
  * @var $model ommu\mailer\models\MailerSetting
- * @var $form yii\widgets\ActiveForm
+ * @var $form app\components\ActiveForm
  *
  * @author Putra Sudaryanto <putra@sudaryanto.id>
  * @contact (+62)856-299-4114
@@ -35,7 +35,7 @@ $js = <<<JS
 		}
 	});
 JS;
-	$this->registerJs($js, \yii\web\View::POS_READY);
+	$this->registerJs($js, \app\components\View::POS_READY);
 ?>
 
 <?php $form = ActiveForm::begin([
@@ -47,15 +47,15 @@ JS;
 <?php //echo $form->errorSummary($model);?>
 
 <?php echo $form->field($model, 'mail_contact', ['template' => '{label}<div class="col-md-6 col-sm-9 col-xs-12">{input}{error}<span class="small-px">'.Yii::t('app', 'Enter the email address you want contact form messages to be sent to.').'</span></div>'])
-	->textInput(['maxlength' => true])
+	->textInput(['maxlength'=>true])
 	->label($model->getAttributeLabel('mail_contact'), ['class'=>'control-label col-md-3 col-sm-3 col-xs-12']); ?>
 
 <?php echo $form->field($model, 'mail_name', ['template' => '{label}<div class="col-md-6 col-sm-9 col-xs-12">{input}{error}<span class="small-px">'.Yii::t('app', 'Enter the name you want the emails from the system to come from in the field below.').'</span></div>'])
-	->textInput(['maxlength' => true])
+	->textInput(['maxlength'=>true])
 	->label($model->getAttributeLabel('mail_name'), ['class'=>'control-label col-md-3 col-sm-3 col-xs-12']); ?>
 
 <?php echo $form->field($model, 'mail_from', ['template' => '{label}<div class="col-md-6 col-sm-9 col-xs-12">{input}{error}<span class="small-px">'.Yii::t('app', 'Enter the email address you want the emails from the system to come from in the field below.').'</span></div>'])
-	->textInput(['maxlength' => true])
+	->textInput(['maxlength'=>true])
 	->label($model->getAttributeLabel('mail_from'), ['class'=>'control-label col-md-3 col-sm-3 col-xs-12']); ?>
 
 <?php echo $form->field($model, 'mail_count', ['template' => '{label}<div class="col-md-6 col-sm-9 col-xs-12">{input}{error}<span class="small-px">'.Yii::t('app', 'The number of emails to send out each time the Background Mailer task is run.').'</span></div>'])
@@ -82,11 +82,11 @@ echo $form->field($model, 'mail_smtp', ['template' => '{label}<div class="col-md
 
 <div id="smtp" <?php echo !$model->mail_smtp ? 'style="display: none;"' : ''; ?>>
 	<?php echo $form->field($model, 'smtp_address', ['template' => '{label}<div class="col-md-6 col-sm-9 col-xs-12">{input}{error}</div>'])
-		->textInput(['maxlength' => true])
+		->textInput(['maxlength'=>true])
 		->label($model->getAttributeLabel('smtp_address'), ['class'=>'control-label col-md-3 col-sm-3 col-xs-12']); ?>
 
 	<?php echo $form->field($model, 'smtp_port', ['template' => '{label}<div class="col-md-6 col-sm-9 col-xs-12">{input}{error}<span class="small-px">'.Yii::t('app', 'Default: 25. Also commonly on port 465 (SMTP over SSL) or port 587.').'</span></div>'])
-		->textInput(['maxlength' => true])
+		->textInput(['maxlength'=>true])
 		->label($model->getAttributeLabel('smtp_port'), ['class'=>'control-label col-md-3 col-sm-3 col-xs-12']); ?>
 
 	<?php 
@@ -100,11 +100,11 @@ echo $form->field($model, 'mail_smtp', ['template' => '{label}<div class="col-md
 
 	<div id="authentication" <?php echo !$model->smtp_authentication ? 'style="display: none;"' : ''; ?>>
 		<?php echo $form->field($model, 'smtp_username', ['template' => '{label}<div class="col-md-6 col-sm-9 col-xs-12">{input}{error}</div>'])
-			->textInput(['maxlength' => true])
+			->textInput(['maxlength'=>true])
 			->label($model->getAttributeLabel('smtp_username'), ['class'=>'control-label col-md-3 col-sm-3 col-xs-12']); ?>
 
 		<?php echo $form->field($model, 'smtp_password', ['template' => '{label}<div class="col-md-6 col-sm-9 col-xs-12">{input}{error}</div>'])
-			->textInput(['maxlength' => true])
+			->textInput(['maxlength'=>true])
 			->label($model->getAttributeLabel('smtp_password'), ['class'=>'control-label col-md-3 col-sm-3 col-xs-12']); ?>
 	</div>
 
@@ -121,7 +121,7 @@ echo $form->field($model, 'mail_smtp', ['template' => '{label}<div class="col-md
 
 <div class="ln_solid"></div>
 <div class="form-group">
-	<div class="col-md-6 col-sm-9 col-xs-12 col-md-offset-3">
+	<div class="col-md-6 col-sm-9 col-xs-12 col-sm-offset-3">
 		<?php echo Html::submitButton($model->isNewRecord ? Yii::t('app', 'Create') : Yii::t('app', 'Update'), ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']); ?>
 	</div>
 </div>

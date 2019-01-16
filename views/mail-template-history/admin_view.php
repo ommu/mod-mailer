@@ -1,7 +1,7 @@
 <?php
 /**
  * Mailer Mail Template Histories (mailer-mail-template-history)
- * @var $this yii\web\View
+ * @var $this app\components\View
  * @var $this ommu\mailer\controllers\MailTemplateHistoryController
  * @var $model ommu\mailer\models\MailerMailTemplateHistory
  *
@@ -22,7 +22,7 @@ $this->params['breadcrumbs'][] = $this->title;
 
 $this->params['menu']['content'] = [
 	['label' => Yii::t('app', 'Back To Manage'), 'url' => Url::to(['index']), 'icon' => 'table'],
-	['label' => Yii::t('app', 'Delete'), 'url' => Url::to(['delete', 'id' => $model->id]), 'htmlOptions' => ['data-confirm'=>Yii::t('app', 'Are you sure you want to delete this item?'), 'data-method'=>'post'], 'icon' => 'trash'],
+	['label' => Yii::t('app', 'Delete'), 'url' => Url::to(['delete', 'id'=>$model->id]), 'htmlOptions' => ['data-confirm'=>Yii::t('app', 'Are you sure you want to delete this item?'), 'data-method'=>'post'], 'icon' => 'trash'],
 ];
 ?>
 

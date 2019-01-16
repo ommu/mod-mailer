@@ -1,7 +1,7 @@
 <?php
 /**
  * Mailer Mail Template Histories (mailer-mail-template-history)
- * @var $this yii\web\View
+ * @var $this app\components\View
  * @var $this ommu\mailer\controllers\MailTemplateHistoryController
  * @var $model ommu\mailer\models\MailerMailTemplateHistory
  *
@@ -15,7 +15,7 @@
 
 use yii\helpers\Html;
 use yii\helpers\Url;
-use app\libraries\grid\GridView;
+use app\components\grid\GridView;
 use yii\widgets\Pjax;
 
 $this->params['breadcrumbs'][] = $this->title;

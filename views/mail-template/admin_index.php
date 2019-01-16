@@ -1,7 +1,7 @@
 <?php
 /**
  * Mailer Mail Templates (mailer-mail-template)
- * @var $this yii\web\View
+ * @var $this app\components\View
  * @var $this ommu\mailer\controllers\MailTemplateController
  * @var $model ommu\mailer\models\MailerMailTemplate
  *
@@ -15,7 +15,7 @@
 
 use yii\helpers\Html;
 use yii\helpers\Url;
-use app\libraries\grid\GridView;
+use app\components\grid\GridView;
 use yii\widgets\Pjax;
 
 $this->params['breadcrumbs'][] = $this->title;
