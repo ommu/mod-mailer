@@ -127,7 +127,7 @@ trait MailTrait
 	public function parseMailSubject($template) 
 	{
 		$module = strtolower(Yii::$app->controller->module->id);
-		if($module)
+		if($module && !preg_match('/('.$module.')/', $template))
 			$template = join('_', [$module, $template]);
 
 		$model = MailerMailTemplate::find()
@@ -148,7 +148,7 @@ trait MailTrait
 	public function parseMailBody($template, $attributes=null) 
 	{
 		$module = strtolower(Yii::$app->controller->module->id);
-		if($module)
+		if($module && !preg_match('/('.$module.')/', $template))
 			$template = join('_', [$module, $template]);
 
 		$model = MailerMailTemplate::find()
