@@ -39,6 +39,7 @@ JS;
 ?>
 
 <?php $form = ActiveForm::begin([
+	'options' => ['class'=>'form-horizontal form-label-left'],
 	'enableClientValidation' => false,
 	'enableAjaxValidation' => false,
 	//'enableClientScript' => true,
@@ -46,66 +47,74 @@ JS;
 
 <?php //echo $form->errorSummary($model);?>
 
-<?php echo $form->field($model, 'mail_contact', ['template' => '{label}<div class="col-md-6 col-sm-9 col-xs-12">{input}{error}<span class="small-px">'.Yii::t('app', 'Enter the email address you want contact form messages to be sent to.').'</span></div>'])
+<?php echo $form->field($model, 'mail_contact')
 	->textInput(['maxlength'=>true])
-	->label($model->getAttributeLabel('mail_contact'), ['class'=>'control-label col-md-3 col-sm-3 col-xs-12']); ?>
+	->label($model->getAttributeLabel('mail_contact'))
+	->hint(Yii::t('app', 'Enter the email address you want contact form messages to be sent to.')); ?>
 
-<?php echo $form->field($model, 'mail_name', ['template' => '{label}<div class="col-md-6 col-sm-9 col-xs-12">{input}{error}<span class="small-px">'.Yii::t('app', 'Enter the name you want the emails from the system to come from in the field below.').'</span></div>'])
+<?php echo $form->field($model, 'mail_name')
 	->textInput(['maxlength'=>true])
-	->label($model->getAttributeLabel('mail_name'), ['class'=>'control-label col-md-3 col-sm-3 col-xs-12']); ?>
+	->label($model->getAttributeLabel('mail_name'))
+	->hint(Yii::t('app', 'Enter the name you want the emails from the system to come from in the field below.')); ?>
 
-<?php echo $form->field($model, 'mail_from', ['template' => '{label}<div class="col-md-6 col-sm-9 col-xs-12">{input}{error}<span class="small-px">'.Yii::t('app', 'Enter the email address you want the emails from the system to come from in the field below.').'</span></div>'])
+<?php echo $form->field($model, 'mail_from')
 	->textInput(['maxlength'=>true])
-	->label($model->getAttributeLabel('mail_from'), ['class'=>'control-label col-md-3 col-sm-3 col-xs-12']); ?>
+	->label($model->getAttributeLabel('mail_from'))
+	->hint(Yii::t('app', 'Enter the email address you want the emails from the system to come from in the field below.')); ?>
 
-<?php echo $form->field($model, 'mail_count', ['template' => '{label}<div class="col-md-6 col-sm-9 col-xs-12">{input}{error}<span class="small-px">'.Yii::t('app', 'The number of emails to send out each time the Background Mailer task is run.').'</span></div>'])
+<?php echo $form->field($model, 'mail_count')
 	->textInput(['type' => 'number', 'min' => '1', 'maxlength' => true])
-	->label($model->getAttributeLabel('mail_count'), ['class'=>'control-label col-md-3 col-sm-3 col-xs-12']); ?>
+	->label($model->getAttributeLabel('mail_count'))
+	->hint(Yii::t('app', 'The number of emails to send out each time the Background Mailer task is run.')); ?>
 
 <?php 
 $mail_queueing = [
 	1 => Yii::t('app', 'Yes, enable email queue'),
 	0 => Yii::t('app', 'No, always send emails immediately'),
 ];
-echo $form->field($model, 'mail_queueing', ['template' => '{label}<div class="col-md-6 col-sm-9 col-xs-12"><span class="small-px">'.Yii::t('app', 'Utilizing an email queue, you can allow your website to throttle the emails being sent out to prevent overloading the mail server.').'</span>{input}{error}</div>'])
+echo $form->field($model, 'mail_queueing', ['template' => '{label}{beginWrapper}{hint}{input}{error}{endWrapper}'])
 	->radioList($mail_queueing, ['class'=>'desc pt-10', 'separator' => '<br />'])
-	->label($model->getAttributeLabel('mail_queueing'), ['class'=>'control-label col-md-3 col-sm-3 col-xs-12']); ?>
+	->label($model->getAttributeLabel('mail_queueing'))
+	->hint(Yii::t('app', 'Utilizing an email queue, you can allow your website to throttle the emails being sent out to prevent overloading the mail server.')); ?>
 
 <?php 
 $mail_smtp = [
 	0 => Yii::t('app', 'Use the built-in mail() function'),
 	1 => Yii::t('app', 'Send emails through an SMTP server'),
 ];
-echo $form->field($model, 'mail_smtp', ['template' => '{label}<div class="col-md-6 col-sm-9 col-xs-12"><span class="small-px">'.Yii::t('app', 'Emails typically get sent through the web server using the PHP mail() function. Alternatively you can have emails sent out using SMTP, usually requiring a username and password, and optionally using an external mail server.').'</span>{input}{error}</div>'])
+echo $form->field($model, 'mail_smtp', ['template' => '{label}{beginWrapper}{hint}{input}{error}{endWrapper}'])
 	->radioList($mail_smtp, ['class'=>'desc pt-10', 'separator' => '<br />'])
-	->label($model->getAttributeLabel('mail_smtp'), ['class'=>'control-label col-md-3 col-sm-3 col-xs-12']); ?>
+	->label($model->getAttributeLabel('mail_smtp'))
+	->hint(Yii::t('app', 'Emails typically get sent through the web server using the PHP mail() function. Alternatively you can have emails sent out using SMTP, usually requiring a username and password, and optionally using an external mail server.')); ?>
 
 <div id="smtp" <?php echo !$model->mail_smtp ? 'style="display: none;"' : ''; ?>>
-	<?php echo $form->field($model, 'smtp_address', ['template' => '{label}<div class="col-md-6 col-sm-9 col-xs-12">{input}{error}</div>'])
+	<?php echo $form->field($model, 'smtp_address')
 		->textInput(['maxlength'=>true])
-		->label($model->getAttributeLabel('smtp_address'), ['class'=>'control-label col-md-3 col-sm-3 col-xs-12']); ?>
+		->label($model->getAttributeLabel('smtp_address')); ?>
 
-	<?php echo $form->field($model, 'smtp_port', ['template' => '{label}<div class="col-md-6 col-sm-9 col-xs-12">{input}{error}<span class="small-px">'.Yii::t('app', 'Default: 25. Also commonly on port 465 (SMTP over SSL) or port 587.').'</span></div>'])
+	<?php echo $form->field($model, 'smtp_port')
 		->textInput(['maxlength'=>true])
-		->label($model->getAttributeLabel('smtp_port'), ['class'=>'control-label col-md-3 col-sm-3 col-xs-12']); ?>
+		->label($model->getAttributeLabel('smtp_port'))
+		->hint(Yii::t('app', 'Default: 25. Also commonly on port 465 (SMTP over SSL) or port 587.')); ?>
 
 	<?php 
 	$smtp_authentication = [
 		1 => Yii::t('app', 'Yes'),
 		0 => Yii::t('app', 'No'),
 	];
-	echo $form->field($model, 'smtp_authentication', ['template' => '{label}<div class="col-md-6 col-sm-9 col-xs-12"><span class="small-px">'.Yii::t('app', 'Does your SMTP Server require authentication?').'</span>{input}{error}</div>'])
+	echo $form->field($model, 'smtp_authentication', ['template' => '{label}{beginWrapper}{hint}{input}{error}{endWrapper}'])
 		->radioList($smtp_authentication, ['class'=>'desc pt-10', 'separator' => '<br />'])
-		->label($model->getAttributeLabel('smtp_authentication'), ['class'=>'control-label col-md-3 col-sm-3 col-xs-12']); ?>
+		->label($model->getAttributeLabel('smtp_authentication'))
+		->hint(Yii::t('app', 'Does your SMTP Server require authentication?')); ?>
 
 	<div id="authentication" <?php echo !$model->smtp_authentication ? 'style="display: none;"' : ''; ?>>
-		<?php echo $form->field($model, 'smtp_username', ['template' => '{label}<div class="col-md-6 col-sm-9 col-xs-12">{input}{error}</div>'])
+		<?php echo $form->field($model, 'smtp_username')
 			->textInput(['maxlength'=>true])
-			->label($model->getAttributeLabel('smtp_username'), ['class'=>'control-label col-md-3 col-sm-3 col-xs-12']); ?>
+			->label($model->getAttributeLabel('smtp_username')); ?>
 
-		<?php echo $form->field($model, 'smtp_password', ['template' => '{label}<div class="col-md-6 col-sm-9 col-xs-12">{input}{error}</div>'])
+		<?php echo $form->field($model, 'smtp_password')
 			->textInput(['maxlength'=>true])
-			->label($model->getAttributeLabel('smtp_password'), ['class'=>'control-label col-md-3 col-sm-3 col-xs-12']); ?>
+			->label($model->getAttributeLabel('smtp_password')); ?>
 	</div>
 
 	<?php 
@@ -114,14 +123,14 @@ echo $form->field($model, 'mail_smtp', ['template' => '{label}<div class="col-md
 		1 => Yii::t('app', 'TLS'),
 		2 => Yii::t('app', 'SSL'),
 	];
-	echo $form->field($model, 'smtp_ssl', ['template' => '{label}<div class="col-md-6 col-sm-9 col-xs-12">{input}{error}</div>'])
+	echo $form->field($model, 'smtp_ssl')
 		->radioList($smtp_ssl, ['class'=>'desc pt-10', 'separator' => '<br />'])
-		->label($model->getAttributeLabel('smtp_ssl'), ['class'=>'control-label col-md-3 col-sm-3 col-xs-12']); ?>
+		->label($model->getAttributeLabel('smtp_ssl')); ?>
 </div>
 
 <div class="ln_solid"></div>
-<div class="form-group">
-	<div class="col-md-6 col-sm-9 col-xs-12 col-sm-offset-3">
+<div class="form-group row">
+	<div class="col-md-6 col-sm-9 col-xs-12 offset-sm-3">
 		<?php echo Html::submitButton($model->isNewRecord ? Yii::t('app', 'Create') : Yii::t('app', 'Update'), ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']); ?>
 	</div>
 </div>
