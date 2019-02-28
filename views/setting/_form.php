@@ -73,7 +73,7 @@ $mail_queueing = [
 	0 => Yii::t('app', 'No, always send emails immediately'),
 ];
 echo $form->field($model, 'mail_queueing', ['template' => '{label}{beginWrapper}{hint}{input}{error}{endWrapper}'])
-	->radioList($mail_queueing, ['class'=>'desc pt-10', 'separator' => '<br />'])
+	->radioList($mail_queueing)
 	->label($model->getAttributeLabel('mail_queueing'))
 	->hint(Yii::t('app', 'Utilizing an email queue, you can allow your website to throttle the emails being sent out to prevent overloading the mail server.')); ?>
 
@@ -83,7 +83,7 @@ $mail_smtp = [
 	1 => Yii::t('app', 'Send emails through an SMTP server'),
 ];
 echo $form->field($model, 'mail_smtp', ['template' => '{label}{beginWrapper}{hint}{input}{error}{endWrapper}'])
-	->radioList($mail_smtp, ['class'=>'desc pt-10', 'separator' => '<br />'])
+	->radioList($mail_smtp)
 	->label($model->getAttributeLabel('mail_smtp'))
 	->hint(Yii::t('app', 'Emails typically get sent through the web server using the PHP mail() function. Alternatively you can have emails sent out using SMTP, usually requiring a username and password, and optionally using an external mail server.')); ?>
 
@@ -103,7 +103,7 @@ echo $form->field($model, 'mail_smtp', ['template' => '{label}{beginWrapper}{hin
 		0 => Yii::t('app', 'No'),
 	];
 	echo $form->field($model, 'smtp_authentication', ['template' => '{label}{beginWrapper}{hint}{input}{error}{endWrapper}'])
-		->radioList($smtp_authentication, ['class'=>'desc pt-10', 'separator' => '<br />'])
+		->radioList($smtp_authentication)
 		->label($model->getAttributeLabel('smtp_authentication'))
 		->hint(Yii::t('app', 'Does your SMTP Server require authentication?')); ?>
 
@@ -124,7 +124,7 @@ echo $form->field($model, 'mail_smtp', ['template' => '{label}{beginWrapper}{hin
 		2 => Yii::t('app', 'SSL'),
 	];
 	echo $form->field($model, 'smtp_ssl')
-		->radioList($smtp_ssl, ['class'=>'desc pt-10', 'separator' => '<br />'])
+		->radioList($smtp_ssl)
 		->label($model->getAttributeLabel('smtp_ssl')); ?>
 </div>
 
