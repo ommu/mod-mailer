@@ -1,5 +1,5 @@
 {
-	"name": "ommu/mod-mailer",
+	"name": "ommu/mailer",
 	"description": "Mailer Module from Ommu Platform",
 	"keywords": [
 		"module",
@@ -37,7 +37,7 @@
 	},
 	"autoload": {
 		"psr-4": {
-			"ommu\\member\\": ""
+			"ommu\\mailer\\": ""
 		}
 	}
 }
