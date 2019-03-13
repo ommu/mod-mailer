@@ -58,9 +58,12 @@ class MailerMailTemplateHistory extends MailerMailTemplateHistoryModel
 	 * @param array $params
 	 * @return ActiveDataProvider
 	 */
-	public function search($params)
+	public function search($params, $column=null)
 	{
-		$query = MailerMailTemplateHistoryModel::find()->alias('t');
+		if(!($column && is_array($column)))
+			$query = MailerMailTemplateHistoryModel::find()->alias('t');
+		else
+			$query = MailerMailTemplateHistoryModel::find()->alias('t')->select($column);
 		$query->joinWith([
 			'templateRltn templateRltn', 
 			'creation creation'

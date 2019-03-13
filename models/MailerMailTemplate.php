@@ -250,7 +250,7 @@ class MailerMailTemplate extends \app\components\ActiveRecord
 	 */
 	public static function getUploadPath($returnAlias=true) 
 	{
-		return ($returnAlias ? Yii::getAlias('@webroot/public/email') : 'public/email');
+		return ($returnAlias ? Yii::getAlias('@public/email') : 'public/email');
 	}
 
 	/**

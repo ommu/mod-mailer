@@ -57,9 +57,12 @@ class MailerMailTemplate extends MailerMailTemplateModel
 	 * @param array $params
 	 * @return ActiveDataProvider
 	 */
-	public function search($params)
+	public function search($params, $column=null)
 	{
-		$query = MailerMailTemplateModel::find()->alias('t');
+		if(!($column && is_array($column)))
+			$query = MailerMailTemplateModel::find()->alias('t');
+		else
+			$query = MailerMailTemplateModel::find()->alias('t')->select($column);
 		$query->joinWith([
 			'creation creation', 
 			'modified modified'

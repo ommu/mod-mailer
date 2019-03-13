@@ -11,9 +11,12 @@
  * Contains many function that most used :
  *	parseTemplate
  *
+ *	getMailAdmin
  *	getMailFrom
  *	getMailTemplatePath
+ *	getMailTemplate
  *	getMailMessage
+ *	parseTemplate
  *	parseMailSubject
  *	parseMailBody
  *
@@ -23,6 +26,7 @@ namespace ommu\mailer\components\traits;
 
 use Yii;
 use yii\helpers\Html;
+use yii\helpers\Inflector;
 use ommu\mailer\models\MailerSetting;
 use ommu\mailer\models\MailerMailTemplate;
 
@@ -79,6 +83,20 @@ trait MailTrait
 	}
 
 	/**
+	 * Parsing of email body
+	 * 
+	 * @return string
+	 */
+	public function getMailTemplate($template) 
+	{
+		$module = isset(Yii::$app->controller->module->id) ? strtolower(Inflector::singularize(Yii::$app->controller->module->id)) : '-';
+		if($module && !preg_match('/^'.$module.'/', $template))
+			$template = join('_', [$module, $template]);
+		
+		return $template;
+	}
+
+	/**
 	 * getMailMessage
 	 * 
 	 * @param string $template
@@ -126,9 +144,7 @@ trait MailTrait
 	 */
 	public function parseMailSubject($template) 
 	{
-		$module = strtolower(Yii::$app->controller->module->id);
-		if($module && !preg_match('/('.$module.')/', $template))
-			$template = join('_', [$module, $template]);
+		$template = $this->getMailTemplate($template);
 
 		$model = MailerMailTemplate::find()
 			->select(['subject'])
@@ -147,9 +163,7 @@ trait MailTrait
 	 */
 	public function parseMailBody($template, $attributes=null) 
 	{
-		$module = strtolower(Yii::$app->controller->module->id);
-		if($module && !preg_match('/('.$module.')/', $template))
-			$template = join('_', [$module, $template]);
+		$template = $this->getMailTemplate($template);
 
 		$model = MailerMailTemplate::find()
 			->select(['template_file'])
