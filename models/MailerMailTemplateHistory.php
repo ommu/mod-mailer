@@ -140,6 +140,7 @@ class MailerMailTemplateHistory extends \app\components\ActiveRecord
 				'attribute' => 'creation_search',
 				'value' => function($model, $key, $index, $column) {
 					return isset($model->creation) ? $model->creation->displayname : '-';
+					// return $model->creationDisplayname;
 				},
 			];
 		}
