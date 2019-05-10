@@ -1,7 +1,7 @@
 <?php
 /**
  * MailTemplateController
- * @var $this app\components\View
+ * @var $this ommu\mailer\controllers\MailTemplateController
  * @var $model ommu\mailer\models\MailerMailTemplate
  *
  * MailTemplateController implements the CRUD actions for MailerMailTemplate model.

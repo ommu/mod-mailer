@@ -1,7 +1,7 @@
 <?php
 /**
  * SettingController
- * @var $this app\components\View
+ * @var $this ommu\mailer\controllers\SettingController
  * @var $model ommu\mailer\models\MailerSetting
  *
  * SettingController implements the CRUD actions for MailerSetting model.
