@@ -1,6 +1,7 @@
 {
 	"name": "ommu/mailer",
 	"description": "Mailer Module from Ommu Platform",
+	"type": "ommu-module",
 	"keywords": [
 		"module",
 		"mailer",
@@ -10,9 +11,8 @@
 		"ommu-platform",
 		"yii2"
 	],
-	"homepage": "https://github.com/ommu/mod-mailer",
-	"type": "ommu-module",
 	"license": "Apache-2.0",
+	"homepage": "https://github.com/ommu/mod-mailer",
 	"support": {
 		"issues": "https://github.com/ommu/mod-mailer/issues",
 		"wiki": "https://github.com/ommu/mod-mailer/wiki",
