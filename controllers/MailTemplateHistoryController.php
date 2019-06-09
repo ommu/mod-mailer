@@ -20,7 +20,7 @@
  * @link https://github.com/ommu/mod-mailer
  *
  */
- 
+
 namespace ommu\mailer\controllers;
 
 use Yii;
@@ -105,8 +105,9 @@ class MailTemplateHistoryController extends Controller
 	 */
 	public function actionDelete($id)
 	{
-		$this->findModel($id)->delete();
-		
+		$model = $this->findModel($id);
+		$model->delete();
+
 		Yii::$app->session->setFlash('success', Yii::t('app', 'Mail template history success deleted.'));
 		return $this->redirect(['index']);
 	}

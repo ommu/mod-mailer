@@ -21,7 +21,7 @@
  * @link https://github.com/ommu/mod-mailer
  *
  */
- 
+
 namespace ommu\mailer\controllers;
 
 use Yii;
@@ -93,6 +93,8 @@ class MailTemplateController extends Controller
 
 		if(Yii::$app->request->isPost) {
 			$model->load(Yii::$app->request->post());
+			// $postData = Yii::$app->request->post();
+			// $model->load($postData);
 
 			if($model->save()) {
 				Yii::$app->session->setFlash('success', Yii::t('app', 'Mail template success updated.'));
@@ -134,8 +136,9 @@ class MailTemplateController extends Controller
 	 */
 	public function actionDelete($id)
 	{
-		$this->findModel($id)->delete();
-		
+		$model = $this->findModel($id);
+		$model->delete();
+
 		Yii::$app->session->setFlash('success', Yii::t('app', 'Mail template success deleted.'));
 		return $this->redirect(['index']);
 	}
