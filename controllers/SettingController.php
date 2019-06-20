@@ -69,7 +69,7 @@ class SettingController extends Controller
 	{
 		$model = MailerSetting::findOne(1);
 		if ($model === null) 
-			$model = new MailerSetting();
+			$model = new MailerSetting(['id'=>1]);
 			
 		if(Yii::$app->request->isPost) {
 			$model->load(Yii::$app->request->post());
