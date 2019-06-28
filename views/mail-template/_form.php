@@ -52,13 +52,13 @@ JS;
 	<?php 
 	$header = MailerMailTemplate::getTemplate('header');
 	echo $form->field($model, 'header_footer[header]')
-		->dropDownList($header, ['prompt' => ''])
+		->dropDownList($header, ['prompt'=>''])
 		->label($model->getAttributeLabel('header_footer[header]')); ?>
 		
 	<?php 
 	$footer = MailerMailTemplate::getTemplate('footer');
 	echo $form->field($model, 'header_footer[footer]')
-		->dropDownList($footer, ['prompt' => ''])
+		->dropDownList($footer, ['prompt'=>''])
 		->label($model->getAttributeLabel('header_footer[footer]')); ?>
 </div>
 

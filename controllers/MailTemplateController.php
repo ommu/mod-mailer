@@ -100,6 +100,10 @@ class MailTemplateController extends Controller
 				Yii::$app->session->setFlash('success', Yii::t('app', 'Mail template success updated.'));
 				return $this->redirect(['index']);
 				//return $this->redirect(['view', 'id' => $model->template]);
+
+			} else {
+				if(Yii::$app->request->isAjax)
+					return \yii\helpers\Json::encode(\app\components\widgets\ActiveForm::validate($model));
 			}
 		}
 

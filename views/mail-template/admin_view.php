@@ -20,11 +20,12 @@ use yii\widgets\DetailView;
 $this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'Mail Templates'), 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 
+if(!$small) {
 $this->params['menu']['content'] = [
 	['label' => Yii::t('app', 'Update'), 'url' => Url::to(['update', 'id'=>$model->template]), 'icon' => 'pencil', 'htmlOptions' => ['class'=>'btn btn-primary']],
 	['label' => Yii::t('app', 'Delete'), 'url' => Url::to(['delete', 'id'=>$model->template]), 'htmlOptions' => ['data-confirm'=>Yii::t('app', 'Are you sure you want to delete this item?'), 'data-method'=>'post', 'class'=>'btn btn-danger'], 'icon' => 'trash'],
 ];
-?>
+} ?>
 
 <?php echo DetailView::widget([
 	'model' => $model,
