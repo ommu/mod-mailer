@@ -67,7 +67,8 @@ class MailerMailTemplateHistory extends MailerMailTemplateHistoryModel
 		$query->joinWith([
 			'templateRltn templateRltn', 
 			'creation creation'
-		]);
+		])
+		->groupBy(['id']);
 
 		// add conditions that should always apply here
 		$dataProvider = new ActiveDataProvider([

@@ -66,7 +66,8 @@ class MailerMailTemplate extends MailerMailTemplateModel
 		$query->joinWith([
 			'creation creation', 
 			'modified modified'
-		]);
+		])
+		->groupBy(['template']);
 
 		// add conditions that should always apply here
 		$dataProvider = new ActiveDataProvider([
