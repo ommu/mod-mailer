@@ -87,8 +87,11 @@ trait MailTrait
 	 * 
 	 * @return string
 	 */
-	public function getMailTemplate($template) 
+	public function getMailTemplate($template, $module) 
 	{
+		if($module != null)
+			return join('_', [$module, $template]);
+
 		$module = isset(Yii::$app->controller->module->id) ? strtolower(Inflector::singularize(Yii::$app->controller->module->id)) : '-';
 		if($module && !preg_match('/^'.$module.'/', $template))
 			$template = join('_', [$module, $template]);
@@ -142,9 +145,9 @@ trait MailTrait
 	 * 
 	 * @return string
 	 */
-	public function parseMailSubject($template) 
+	public function parseMailSubject($template, $module=null) 
 	{
-		$template = $this->getMailTemplate($template);
+		$template = $this->getMailTemplate($template, $module);
 
 		$model = MailerMailTemplate::find()
 			->select(['subject'])
@@ -161,9 +164,9 @@ trait MailTrait
 	 * 
 	 * @return string
 	 */
-	public function parseMailBody($template, $attributes=null) 
+	public function parseMailBody($template, $attributes=null, $module=null) 
 	{
-		$template = $this->getMailTemplate($template);
+		$template = $this->getMailTemplate($template, $module);
 
 		$model = MailerMailTemplate::find()
 			->select(['template_file'])
