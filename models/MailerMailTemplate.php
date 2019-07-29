@@ -211,11 +211,13 @@ class MailerMailTemplate extends \app\components\ActiveRecord
 	public static function getInfo($template, $column=null)
 	{
 		if($column != null) {
-			$model = self::find()
-				->select([$column])
-				->where(['template' => $template])
-				->one();
-			return $model->$column;
+			$model = self::find();
+			if(is_array($column))
+				$model->select($column);
+			else
+				$model->select([$column]);
+			$model = $model->where(['template' => $template])->one();
+			return is_array($column) ? $model : $model->$column;
 			
 		} else {
 			$model = self::findOne($template);
