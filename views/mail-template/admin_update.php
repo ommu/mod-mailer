@@ -6,7 +6,7 @@
  * @var $model ommu\mailer\models\MailerMailTemplate
  * @var $form app\components\widgets\ActiveForm
  *
- * @author Putra Sudaryanto <putra@sudaryanto.id>
+ * @author Putra Sudaryanto <putra@ommu.co>
  * @contact (+62)856-299-4114
  * @copyright Copyright (c) 2018 OMMU (www.ommu.co)
  * @created date 23 May 2018, 10:56 WIB

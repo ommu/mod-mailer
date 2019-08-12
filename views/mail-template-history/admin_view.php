@@ -5,7 +5,7 @@
  * @var $this ommu\mailer\controllers\MailTemplateHistoryController
  * @var $model ommu\mailer\models\MailerMailTemplateHistory
  *
- * @author Putra Sudaryanto <putra@sudaryanto.id>
+ * @author Putra Sudaryanto <putra@ommu.co>
  * @contact (+62)856-299-4114
  * @copyright Copyright (c) 2018 OMMU (www.ommu.co)
  * @created date 30 May 2018, 03:41 WIB
