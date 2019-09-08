@@ -46,7 +46,7 @@ class MailerSetting extends \app\components\ActiveRecord
 	public $gridForbiddenColumn = [];
 
 	// Variable Search
-	public $modified_search;
+	public $modifiedDisplayname;
 
 	/**
 	 * @return string the associated database table name
@@ -92,7 +92,7 @@ class MailerSetting extends \app\components\ActiveRecord
 			'smtp_ssl' => Yii::t('app', 'Use SSL or TLS?'),
 			'modified_date' => Yii::t('app', 'Modified Date'),
 			'modified_id' => Yii::t('app', 'Modified'),
-			'modified_search' => Yii::t('app', 'Modified'),
+			'modifiedDisplayname' => Yii::t('app', 'Modified'),
 		];
 	}
 
@@ -175,8 +175,8 @@ class MailerSetting extends \app\components\ActiveRecord
 			'filter' => $this->filterDatepicker($this, 'modified_date'),
 		];
 		if(!Yii::$app->request->get('modified')) {
-			$this->templateColumns['modified_search'] = [
-				'attribute' => 'modified_search',
+			$this->templateColumns['modifiedDisplayname'] = [
+				'attribute' => 'modifiedDisplayname',
 				'value' => function($model, $key, $index, $column) {
 					return isset($model->modified) ? $model->modified->displayname : '-';
 					// return $model->modifiedDisplayname;

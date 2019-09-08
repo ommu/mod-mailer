@@ -27,7 +27,7 @@ class MailerMailTemplate extends MailerMailTemplateModel
 	public function rules()
 	{
 		return [
-			[['template', 'subject', 'type', 'header_footer', 'template_file', 'creation_date', 'modified_date', 'creation_search', 'modified_search'], 'safe'],
+			[['template', 'subject', 'type', 'header_footer', 'template_file', 'creation_date', 'modified_date', 'creationDisplayname', 'modifiedDisplayname'], 'safe'],
 			[['creation_id', 'modified_id'], 'integer'],
 		];
 	}
@@ -75,11 +75,11 @@ class MailerMailTemplate extends MailerMailTemplateModel
 		]);
 
 		$attributes = array_keys($this->getTableSchema()->columns);
-		$attributes['creation_search'] = [
+		$attributes['creationDisplayname'] = [
 			'asc' => ['creation.displayname' => SORT_ASC],
 			'desc' => ['creation.displayname' => SORT_DESC],
 		];
-		$attributes['modified_search'] = [
+		$attributes['modifiedDisplayname'] = [
 			'asc' => ['modified.displayname' => SORT_ASC],
 			'desc' => ['modified.displayname' => SORT_DESC],
 		];
@@ -109,8 +109,8 @@ class MailerMailTemplate extends MailerMailTemplateModel
 			->andFilterWhere(['like', 't.subject', $this->subject])
 			->andFilterWhere(['like', 't.header_footer', $this->header_footer])
 			->andFilterWhere(['like', 't.template_file', $this->template_file])
-			->andFilterWhere(['like', 'creation.displayname', $this->creation_search])
-			->andFilterWhere(['like', 'modified.displayname', $this->modified_search]);
+			->andFilterWhere(['like', 'creation.displayname', $this->creationDisplayname])
+			->andFilterWhere(['like', 'modified.displayname', $this->modifiedDisplayname]);
 
 		return $dataProvider;
 	}

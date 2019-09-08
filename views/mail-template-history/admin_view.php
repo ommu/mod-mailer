@@ -44,8 +44,8 @@ $this->params['menu']['content'] = [
 			'visible' => !$small,
 		],
 		[
-			'attribute' => 'creation_search',
+			'attribute' => 'creationDisplayname',
 			'value' => isset($model->creation) ? $model->creation->displayname : '-',
 		],
 	],
-]) ?>
+]); ?>

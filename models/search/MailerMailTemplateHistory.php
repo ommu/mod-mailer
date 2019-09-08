@@ -29,7 +29,7 @@ class MailerMailTemplateHistory extends MailerMailTemplateHistoryModel
 		return [
 			[['id', 'creation_id'], 'integer'],
 			[['template', 'template_file', 'creation_date',
-				'template_search', 'creation_search'], 'safe'],
+				'template_search', 'creationDisplayname'], 'safe'],
 		];
 	}
 
@@ -80,7 +80,7 @@ class MailerMailTemplateHistory extends MailerMailTemplateHistoryModel
 			'asc' => ['templateRltn.template' => SORT_ASC],
 			'desc' => ['templateRltn.template' => SORT_DESC],
 		];
-		$attributes['creation_search'] = [
+		$attributes['creationDisplayname'] = [
 			'asc' => ['creation.displayname' => SORT_ASC],
 			'desc' => ['creation.displayname' => SORT_DESC],
 		];
@@ -109,7 +109,7 @@ class MailerMailTemplateHistory extends MailerMailTemplateHistoryModel
 		$query->andFilterWhere(['like', 't.template', $this->template])
 			->andFilterWhere(['like', 't.template_file', $this->template_file])
 			->andFilterWhere(['like', 'templateRltn.template', $this->template_search])
-			->andFilterWhere(['like', 'creation.displayname', $this->creation_search]);
+			->andFilterWhere(['like', 'creation.displayname', $this->creationDisplayname]);
 
 		return $dataProvider;
 	}

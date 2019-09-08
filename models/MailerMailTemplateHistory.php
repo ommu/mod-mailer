@@ -36,7 +36,7 @@ class MailerMailTemplateHistory extends \app\components\ActiveRecord
 
 	// Variable Search
 	public $template_search;
-	public $creation_search;
+	public $creationDisplayname;
 
 	/**
 	 * @return string the associated database table name
@@ -73,7 +73,7 @@ class MailerMailTemplateHistory extends \app\components\ActiveRecord
 			'creation_date' => Yii::t('app', 'Creation Date'),
 			'creation_id' => Yii::t('app', 'Creation'),
 			'template_search' => Yii::t('app', 'Template'),
-			'creation_search' => Yii::t('app', 'Creation'),
+			'creationDisplayname' => Yii::t('app', 'Creation'),
 		];
 	}
 
@@ -139,8 +139,8 @@ class MailerMailTemplateHistory extends \app\components\ActiveRecord
 			'filter' => $this->filterDatepicker($this, 'creation_date'),
 		];
 		if(!Yii::$app->request->get('creation')) {
-			$this->templateColumns['creation_search'] = [
-				'attribute' => 'creation_search',
+			$this->templateColumns['creationDisplayname'] = [
+				'attribute' => 'creationDisplayname',
 				'value' => function($model, $key, $index, $column) {
 					return isset($model->creation) ? $model->creation->displayname : '-';
 					// return $model->creationDisplayname;
