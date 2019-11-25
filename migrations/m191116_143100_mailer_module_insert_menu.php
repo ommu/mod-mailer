@@ -21,6 +21,7 @@ class m191116_143100_mailer_module_insert_menu extends \yii\db\Migration
 		if(Yii::$app->db->getTableSchema($tableName, true)) {
 			$this->batchInsert('ommu_core_menus', ['name', 'module', 'icon', 'parent', 'route', 'order', 'data'], [
 				['Mailer Settings', 'mailer', null, Menu::getParentId('Settings#rbac'), '/mailer/setting/index', null, null],
+				['Mail Template', 'mailer', null, Menu::getParentId('Development Tools#rbac'), '/mailer/mail-template/index', null, null],
 			]);
 		}
 	}
