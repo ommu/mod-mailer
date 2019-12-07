@@ -25,10 +25,9 @@
 namespace ommu\mailer\controllers;
 
 use Yii;
-use yii\filters\VerbFilter;
-use yii\web\NotFoundHttpException;
 use app\components\Controller;
 use mdm\admin\components\AccessControl;
+use yii\filters\VerbFilter;
 use ommu\mailer\models\MailerMailTemplate;
 use ommu\mailer\models\search\MailerMailTemplate as MailerMailTemplateSearch;
 
@@ -157,9 +156,9 @@ class MailTemplateController extends Controller
 	 */
 	protected function findModel($id)
 	{
-		if(($model = MailerMailTemplate::findOne($id)) !== null) 
+		if(($model = MailerMailTemplate::findOne($id)) !== null)
 			return $model;
-		else
-			throw new NotFoundHttpException(Yii::t('app', 'The requested page does not exist.'));
+
+		throw new \yii\web\NotFoundHttpException(Yii::t('app', 'The requested page does not exist.'));
 	}
 }
