@@ -133,7 +133,7 @@ echo $form->field($model, 'mail_smtp', ['template' => '{label}{beginWrapper}{hin
 		->label($model->getAttributeLabel('smtp_ssl')); ?>
 </div>
 
-<div class="ln_solid"></div>
+<hr/>
 
 <?php echo $form->field($model, 'submitButton')
 	->submitButton(); ?>
