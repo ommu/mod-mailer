@@ -120,7 +120,7 @@ class MailerSetting extends \app\components\ActiveRecord
 		$this->templateColumns['_no'] = [
 			'header' => '#',
 			'class' => 'yii\grid\SerialColumn',
-			'contentOptions' => ['class'=>'center'],
+			'contentOptions' => ['class'=>'text-center'],
 		];
 		$this->templateColumns['mail_contact'] = [
 			'attribute' => 'mail_contact',
@@ -191,7 +191,7 @@ class MailerSetting extends \app\components\ActiveRecord
 				return $this->filterYesNo($model->mail_queueing);
 			},
 			'filter' => $this->filterYesNo(),
-			'contentOptions' => ['class'=>'center'],
+			'contentOptions' => ['class'=>'text-center'],
 		];
 		$this->templateColumns['mail_smtp'] = [
 			'attribute' => 'mail_smtp',
@@ -199,7 +199,7 @@ class MailerSetting extends \app\components\ActiveRecord
 				return $this->filterYesNo($model->mail_smtp);
 			},
 			'filter' => $this->filterYesNo(),
-			'contentOptions' => ['class'=>'center'],
+			'contentOptions' => ['class'=>'text-center'],
 		];
 		$this->templateColumns['smtp_authentication'] = [
 			'attribute' => 'smtp_authentication',
@@ -207,7 +207,7 @@ class MailerSetting extends \app\components\ActiveRecord
 				return $this->filterYesNo($model->smtp_authentication);
 			},
 			'filter' => $this->filterYesNo(),
-			'contentOptions' => ['class'=>'center'],
+			'contentOptions' => ['class'=>'text-center'],
 		];
 		$this->templateColumns['smtp_ssl'] = [
 			'attribute' => 'smtp_ssl',
@@ -215,7 +215,7 @@ class MailerSetting extends \app\components\ActiveRecord
 				return $this->filterYesNo($model->smtp_ssl);
 			},
 			'filter' => $this->filterYesNo(),
-			'contentOptions' => ['class'=>'center'],
+			'contentOptions' => ['class'=>'text-center'],
 		];
 	}
 
