@@ -5,9 +5,9 @@
  * @var $this ommu\mailer\controllers\MailTemplateController
  * @var $model ommu\mailer\models\MailerMailTemplate
  *
- * @author Putra Sudaryanto <putra@ommu.co>
+ * @author Putra Sudaryanto <putra@ommu.id>
  * @contact (+62)856-299-4114
- * @copyright Copyright (c) 2018 OMMU (www.ommu.co)
+ * @copyright Copyright (c) 2018 OMMU (www.ommu.id)
  * @created date 23 May 2018, 10:56 WIB
  * @link https://github.com/ommu/mod-mailer
  *
