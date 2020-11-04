@@ -21,7 +21,7 @@ use ommu\mailer\models\MailerMailTemplate;
 $js = <<<JS
 	$('.field-type select[name="type"]').on('change', function() {
 		var id = $(this).val();
-		if(id != 'content') {
+        if (id != 'content') {
 			$('div#header_footer').slideUp();
 		} else {
 			$('div#header_footer').slideDown();

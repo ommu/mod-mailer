@@ -20,7 +20,7 @@ use app\components\widgets\ActiveForm;
 $js = <<<JS
 	$('.field-mail_smtp input[name="mail_smtp"]').on('change', function() {
 		var id = $(this).val();
-		if(id == '1') {
+        if (id == '1') {
 			$('div#smtp').slideDown();
 		} else {
 			$('div#smtp').slideUp();
@@ -28,7 +28,7 @@ $js = <<<JS
 	});
 	$('.field-smtp_authentication input[name="smtp_authentication"]').on('change', function() {
 		var id = $(this).val();
-		if(id == '1') {
+        if (id == '1') {
 			$('div#authentication').slideDown();
 		} else {
 			$('div#authentication').slideUp();

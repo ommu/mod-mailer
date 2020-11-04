@@ -56,18 +56,19 @@ class MailTemplateHistoryController extends Controller
 	 */
 	public function actionIndex()
 	{
-		$searchModel = new MailerMailTemplateHistorySearch();
-		$dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+        $searchModel = new MailerMailTemplateHistorySearch();
+        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
-		$gridColumn = Yii::$app->request->get('GridColumn', null);
-		$cols = [];
-		if($gridColumn != null && count($gridColumn) > 0) {
-			foreach($gridColumn as $key => $val) {
-				if($gridColumn[$key] == 1)
-					$cols[] = $key;
-			}
-		}
-		$columns = $searchModel->getGridColumn($cols);
+        $gridColumn = Yii::$app->request->get('GridColumn', null);
+        $cols = [];
+        if ($gridColumn != null && count($gridColumn) > 0) {
+            foreach ($gridColumn as $key => $val) {
+                if ($gridColumn[$key] == 1) {
+                    $cols[] = $key;
+                }
+            }
+        }
+        $columns = $searchModel->getGridColumn($cols);
 
 		$this->view->title = Yii::t('app', 'Mail Template Histories');
 		$this->view->description = '';
@@ -120,8 +121,9 @@ class MailTemplateHistoryController extends Controller
 	 */
 	protected function findModel($id)
 	{
-		if(($model = MailerMailTemplateHistory::findOne($id)) !== null)
-			return $model;
+        if (($model = MailerMailTemplateHistory::findOne($id)) !== null) {
+            return $model;
+        }
 
 		throw new \yii\web\NotFoundHttpException(Yii::t('app', 'The requested page does not exist.'));
 	}

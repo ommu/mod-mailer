@@ -39,7 +39,7 @@ class MailerMailTemplate extends \app\components\ActiveRecord
 {
 	use \ommu\traits\FileTrait;
 
-	public $gridForbiddenColumn = ['header_footer','modified_date','modifiedDisplayname'];
+	public $gridForbiddenColumn = ['header_footer', 'modified_date', 'modifiedDisplayname'];
 
 	// Variable Search
 	public $creationDisplayname;
@@ -132,11 +132,13 @@ class MailerMailTemplate extends \app\components\ActiveRecord
 	{
 		parent::init();
 
-		if(!(Yii::$app instanceof \app\components\Application))
-			return;
+        if (!(Yii::$app instanceof \app\components\Application)) {
+            return;
+        }
 
-		if(!$this->hasMethod('search'))
-			return;
+        if (!$this->hasMethod('search')) {
+            return;
+        }
 
 		$this->templateColumns['_no'] = [
 			'header' => '#',
@@ -211,14 +213,15 @@ class MailerMailTemplate extends \app\components\ActiveRecord
 	 */
 	public static function getInfo($template, $column=null)
 	{
-		if($column != null) {
-			$model = self::find();
-			if(is_array($column))
-				$model->select($column);
-			else
-				$model->select([$column]);
-			$model = $model->where(['template' => $template])->one();
-			return is_array($column) ? $model : $model->$column;
+        if ($column != null) {
+            $model = self::find();
+            if (is_array($column)) {
+                $model->select($column);
+            } else {
+                $model->select([$column]);
+            }
+            $model = $model->where(['template' => $template])->one();
+            return is_array($column) ? $model : $model->$column;
 			
 		} else {
 			$model = self::findOne($template);
@@ -229,20 +232,21 @@ class MailerMailTemplate extends \app\components\ActiveRecord
 	/**
 	 * function getTemplate
 	 */
-	public static function getTemplate($type=null,$array=true) 
+	public static function getTemplate($type=null, $array=true)
 	{
 		$model = self::find()->alias('t');
-		if($type == null)
-			$model->andWhere(['t.type' => 'content']);
-		else
-			$model->andWhere(['t.type' => $type]);
+        if ($type == null) {
+            $model->andWhere(['t.type' => 'content']);
+        } else {
+            $model->andWhere(['t.type' => $type]);
+        }
 
 		$model = $model->orderBy('t.template ASC')->all();
 
-		if($array == true) {
+        if ($array == true) {
 			$items = [];
-			if($model !== null) {
-				foreach($model as $val) {
+            if ($model !== null) {
+				foreach ($model as $val) {
 					$items[$val->template] = $val->template;
 				}
 				return $items;
@@ -256,7 +260,7 @@ class MailerMailTemplate extends \app\components\ActiveRecord
 	 * @param returnAlias set true jika ingin kembaliannya path alias atau false jika ingin string
 	 * relative path. default true.
 	 */
-	public static function getUploadPath($returnAlias=true) 
+	public static function getUploadPath($returnAlias=true)
 	{
 		return ($returnAlias ? Yii::getAlias('@public/email') : 'email');
 	}
@@ -274,19 +278,22 @@ class MailerMailTemplate extends \app\components\ActiveRecord
 	 */
 	public function beforeValidate()
 	{
-		if(parent::beforeValidate()) {
-			if($this->isNewRecord) {
-				if($this->creation_id == null)
-					$this->creation_id = !Yii::$app->user->isGuest ? Yii::$app->user->id : null;
-			} else {
-				if($this->modified_id == null)
-					$this->modified_id = !Yii::$app->user->isGuest ? Yii::$app->user->id : null;
-			}
+        if (parent::beforeValidate()) {
+            if ($this->isNewRecord) {
+                if ($this->creation_id == null) {
+                    $this->creation_id = !Yii::$app->user->isGuest ? Yii::$app->user->id : null;
+                }
+            } else {
+                if ($this->modified_id == null) {
+                    $this->modified_id = !Yii::$app->user->isGuest ? Yii::$app->user->id : null;
+                }
+            }
 
-			if($this->type != 'content')
-				$this->subject = '-';
-		}
-		return true;
+            if ($this->type != 'content') {
+                $this->subject = '-';
+            }
+        }
+        return true;
 	}
 
 	/**
@@ -306,15 +313,15 @@ class MailerMailTemplate extends \app\components\ActiveRecord
 	 */
 	public function beforeSave($insert)
 	{
-		if(parent::beforeSave($insert)) {
-			if($insert) {
-				$uploadPath = self::getUploadPath();
-				$verwijderenPath = join('/', [self::getUploadPath(), 'verwijderen']);
-				$this->createUploadDirectory(self::getUploadPath());
-			}
-			$this->header_footer = serialize($this->header_footer);
-		}
-		return true;
+        if (parent::beforeSave($insert)) {
+            if ($insert) {
+                $uploadPath = self::getUploadPath();
+                $verwijderenPath = join('/', [self::getUploadPath(), 'verwijderen']);
+                $this->createUploadDirectory(self::getUploadPath());
+            }
+            $this->header_footer = serialize($this->header_footer);
+        }
+        return true;
 	}
 
 	/**
@@ -322,22 +329,11 @@ class MailerMailTemplate extends \app\components\ActiveRecord
 	 */
 	public function afterSave($insert, $changedAttributes)
 	{
-		parent::afterSave($insert, $changedAttributes);
-			
-		$uploadPath = self::getUploadPath();
-		$verwijderenPath = join('/', [self::getUploadPath(), 'verwijderen']);
-		$this->createUploadDirectory(self::getUploadPath());
-	}
+        parent::afterSave($insert, $changedAttributes);
 
-	/**
-	 * Before delete attributes
-	 */
-	public function beforeDelete()
-	{
-		if(parent::beforeDelete()) {
-			// Create action
-		}
-		return true;
+        $uploadPath = self::getUploadPath();
+        $verwijderenPath = join('/', [self::getUploadPath(), 'verwijderen']);
+        $this->createUploadDirectory(self::getUploadPath());
 	}
 
 	/**
@@ -345,12 +341,13 @@ class MailerMailTemplate extends \app\components\ActiveRecord
 	 */
 	public function afterDelete()
 	{
-		parent::afterDelete();
+        parent::afterDelete();
 
-		$uploadPath = self::getUploadPath();
-		$verwijderenPath = join('/', [self::getUploadPath(), 'verwijderen']);
+        $uploadPath = self::getUploadPath();
+        $verwijderenPath = join('/', [self::getUploadPath(), 'verwijderen']);
 
-		if($this->template != '' && file_exists(join('/', [$uploadPath, $this->template])))
-			rename(join('/', [$uploadPath, $this->template]), join('/', [$verwijderenPath, time().'_'.$this->template]));
+        if ($this->template != '' && file_exists(join('/', [$uploadPath, $this->template]))) {
+            rename(join('/', [$uploadPath, $this->template]), join('/', [$verwijderenPath, time().'_'.$this->template]));
+        }
 	}
 }

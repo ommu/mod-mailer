@@ -67,23 +67,25 @@ class SettingController extends Controller
 	public function actionUpdate()
 	{
 		$model = MailerSetting::findOne(1);
-		if ($model === null) 
-			$model = new MailerSetting(['id'=>1]);
+        if ($model === null) {
+            $model = new MailerSetting(['id'=>1]);
+        }
 			
-		if(Yii::$app->request->isPost) {
+        if (Yii::$app->request->isPost) {
 			$model->load(Yii::$app->request->post());
 			// $postData = Yii::$app->request->post();
 			// $model->load($postData);
 			// $model->order = $postData['order'] ? $postData['order'] : 0;
 
-			if($model->save()) {
+            if ($model->save()) {
 				Yii::$app->session->setFlash('success', Yii::t('app', 'Mailer setting success updated.'));
 				return $this->redirect(['update']);
 				//return $this->redirect(['view', 'id' => $model->id]);
 
-			} else {
-				if(Yii::$app->request->isAjax)
-					return \yii\helpers\Json::encode(\app\components\widgets\ActiveForm::validate($model));
+            } else {
+                if (Yii::$app->request->isAjax) {
+                    return \yii\helpers\Json::encode(\app\components\widgets\ActiveForm::validate($model));
+                }
 			}
 		}
 
@@ -119,8 +121,9 @@ class SettingController extends Controller
 	 */
 	protected function findModel($id)
 	{
-		if(($model = MailerSetting::findOne($id)) !== null)
-			return $model;
+        if (($model = MailerSetting::findOne($id)) !== null) {
+            return $model;
+        }
 
 		throw new \yii\web\NotFoundHttpException(Yii::t('app', 'The requested page does not exist.'));
 	}

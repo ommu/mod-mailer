@@ -40,10 +40,11 @@ trait MailTrait
 		$model = MailerSetting::find()
 			->select(['mail_contact', 'mail_name'])
 			->where(['id' => 1])
-			->one();
+            ->one();
 
-		if($model == null)
-			return false;
+        if ($model == null) {
+            return false;
+        }
 		
 		$mail_name = $model->mail_name ? $model->mail_name : $model->mail_contact;
 		return [$model->mail_contact => $mail_name];
@@ -59,10 +60,11 @@ trait MailTrait
 		$model = MailerSetting::find()
 			->select(['mail_name', 'mail_from'])
 			->where(['id' => 1])
-			->one();
+            ->one();
 
-		if($model == null)
-			return false;
+        if ($model == null) {
+            return false;
+        }
 		
 		$mail_name = $model->mail_name ? $model->mail_name : $model->mail_from;
 		return [$model->mail_from => $mail_name];
@@ -85,14 +87,16 @@ trait MailTrait
 	 * 
 	 * @return string
 	 */
-	public function getMailTemplate($template, $module) 
+	public function getMailTemplate($template, $module)
 	{
-		if($module != null)
-			return join('_', [$module, $template]);
+        if ($module != null) {
+            return join('_', [$module, $template]);
+        }
 
 		$module = isset(Yii::$app->controller->module->id) ? strtolower(Inflector::singularize(Yii::$app->controller->module->id)) : '-';
-		if($module && !preg_match('/^'.$module.'/', $template))
-			$template = join('_', [$module, $template]);
+        if ($module && !preg_match('/^'.$module.'/', $template)) {
+            $template = join('_', [$module, $template]);
+        }
 		
 		return $template;
 	}
@@ -109,8 +113,9 @@ trait MailTrait
 		$templateFile = join('/', [$this->getMailTemplatePath(), $template]);
 
 		$message = '';
-		if(file_exists($templateFile))
-			$message = file_get_contents($templateFile);
+        if (file_exists($templateFile)) {
+            $message = file_get_contents($templateFile);
+        }
 
 		return $message;
 	}
@@ -143,7 +148,7 @@ trait MailTrait
 	 * 
 	 * @return string
 	 */
-	public function parseMailSubject($template, $module=null) 
+	public function parseMailSubject($template, $module=null)
 	{
 		$template = $this->getMailTemplate($template, $module);
 
@@ -162,7 +167,7 @@ trait MailTrait
 	 * 
 	 * @return string
 	 */
-	public function parseMailBody($template, $attributes=null, $module=null) 
+	public function parseMailBody($template, $attributes=null, $module=null)
 	{
 		$template = $this->getMailTemplate($template, $module);
 

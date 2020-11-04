@@ -111,11 +111,13 @@ class MailerSetting extends \app\components\ActiveRecord
 	{
 		parent::init();
 
-		if(!(Yii::$app instanceof \app\components\Application))
-			return;
+        if (!(Yii::$app instanceof \app\components\Application)) {
+            return;
+        }
 
-		if(!$this->hasMethod('search'))
-			return;
+        if (!$this->hasMethod('search')) {
+            return;
+        }
 
 		$this->templateColumns['_no'] = [
 			'header' => '#',
@@ -224,14 +226,15 @@ class MailerSetting extends \app\components\ActiveRecord
 	 */
 	public static function getInfo($column=null)
 	{
-		if($column != null) {
-			$model = self::find();
-			if(is_array($column))
-				$model->select($column);
-			else
-				$model->select([$column]);
-			$model = $model->where(['id' => 1])->one();
-			return is_array($column) ? $model : $model->$column;
+        if ($column != null) {
+            $model = self::find();
+            if (is_array($column)) {
+                $model->select($column);
+            } else {
+                $model->select([$column]);
+            }
+            $model = $model->where(['id' => 1])->one();
+            return is_array($column) ? $model : $model->$column;
 			
 		} else {
 			$model = self::findOne(1);
@@ -242,33 +245,39 @@ class MailerSetting extends \app\components\ActiveRecord
 	/**
 	 * before validate attributes
 	 */
-	public function beforeValidate() 
+	public function beforeValidate()
 	{
-		if(parent::beforeValidate()) {
-			if(!$this->isNewRecord) {
-				if($this->modified_id == null)
-					$this->modified_id = !Yii::$app->user->isGuest ? Yii::$app->user->id : null;
-			}
+        if (parent::beforeValidate()) {
+            if (!$this->isNewRecord) {
+                if ($this->modified_id == null) {
+                    $this->modified_id = !Yii::$app->user->isGuest ? Yii::$app->user->id : null;
+                }
+            }
 				
-			if($this->mail_smtp) {
-				if($this->smtp_address == '')
-					$this->addError('smtp_address', Yii::t('app', '{attribute} cannot be blank.', ['attribute'=>$this->getAttributeLabel('smtp_address')]));
+            if ($this->mail_smtp) {
+                if ($this->smtp_address == '') {
+                    $this->addError('smtp_address', Yii::t('app', '{attribute} cannot be blank.', ['attribute'=>$this->getAttributeLabel('smtp_address')]));
+                }
 				
-				if($this->smtp_port == '')
-					$this->addError('smtp_port', Yii::t('app', '{attribute} cannot be blank.', ['attribute'=>$this->getAttributeLabel('smtp_port')]));
+                if ($this->smtp_port == '') {
+                    $this->addError('smtp_port', Yii::t('app', '{attribute} cannot be blank.', ['attribute'=>$this->getAttributeLabel('smtp_port')]));
+                }
 
-				if($this->smtp_ssl == '')
-					$this->addError('smtp_ssl', Yii::t('app', '{attribute} cannot be blank.', ['attribute'=>$this->getAttributeLabel('smtp_ssl')]));
+                if ($this->smtp_ssl == '') {
+                    $this->addError('smtp_ssl', Yii::t('app', '{attribute} cannot be blank.', ['attribute'=>$this->getAttributeLabel('smtp_ssl')]));
+                }
 				
-				if($this->smtp_authentication) {
-					if($this->smtp_username == '')
-						$this->addError('smtp_username', Yii::t('app', '{attribute} cannot be blank.', ['attribute'=>$this->getAttributeLabel('smtp_username')]));
+                if ($this->smtp_authentication) {
+                    if ($this->smtp_username == '') {
+                        $this->addError('smtp_username', Yii::t('app', '{attribute} cannot be blank.', ['attribute'=>$this->getAttributeLabel('smtp_username')]));
+                    }
 
-					if($this->smtp_password == '')
-						$this->addError('smtp_password', Yii::t('app', '{attribute} cannot be blank.', ['attribute'=>$this->getAttributeLabel('smtp_password')]));
+                    if ($this->smtp_password == '') {
+                        $this->addError('smtp_password', Yii::t('app', '{attribute} cannot be blank.', ['attribute'=>$this->getAttributeLabel('smtp_password')]));
+                    }
 				}
-			}
-		}
-		return true;
+            }
+        }
+        return true;
 	}
 }

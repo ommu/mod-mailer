@@ -59,10 +59,11 @@ class MailerMailTemplate extends MailerMailTemplateModel
 	 */
 	public function search($params, $column=null)
 	{
-		if(!($column && is_array($column)))
-			$query = MailerMailTemplateModel::find()->alias('t');
-		else
-			$query = MailerMailTemplateModel::find()->alias('t')->select($column);
+        if (!($column && is_array($column))) {
+            $query = MailerMailTemplateModel::find()->alias('t');
+        } else {
+            $query = MailerMailTemplateModel::find()->alias('t')->select($column);
+        }
 		$query->joinWith([
 			'creation creation', 
 			'modified modified'
@@ -90,7 +91,7 @@ class MailerMailTemplate extends MailerMailTemplateModel
 
 		$this->load($params);
 
-		if(!$this->validate()) {
+        if (!$this->validate()) {
 			// uncomment the following line if you do not want to return any records when validation fails
 			// $query->where('0=1');
 			return $dataProvider;

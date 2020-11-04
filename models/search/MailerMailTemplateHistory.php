@@ -60,10 +60,11 @@ class MailerMailTemplateHistory extends MailerMailTemplateHistoryModel
 	 */
 	public function search($params, $column=null)
 	{
-		if(!($column && is_array($column)))
-			$query = MailerMailTemplateHistoryModel::find()->alias('t');
-		else
-			$query = MailerMailTemplateHistoryModel::find()->alias('t')->select($column);
+        if (!($column && is_array($column))) {
+            $query = MailerMailTemplateHistoryModel::find()->alias('t');
+        } else {
+            $query = MailerMailTemplateHistoryModel::find()->alias('t')->select($column);
+        }
 		$query->joinWith([
 			'templateRltn templateRltn', 
 			'creation creation'
@@ -89,11 +90,12 @@ class MailerMailTemplateHistory extends MailerMailTemplateHistoryModel
 			'defaultOrder' => ['id' => SORT_DESC],
 		]);
 
-		if(Yii::$app->request->get('id'))
-			unset($params['id']);
+        if (Yii::$app->request->get('id')) {
+            unset($params['id']);
+        }
 		$this->load($params);
 
-		if(!$this->validate()) {
+        if (!$this->validate()) {
 			// uncomment the following line if you do not want to return any records when validation fails
 			// $query->where('0=1');
 			return $dataProvider;
