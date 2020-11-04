@@ -38,17 +38,17 @@ class MailTemplateController extends Controller
 	 */
 	public function behaviors()
 	{
-		return [
-			'access' => [
-				'class' => AccessControl::className(),
-			],
-			'verbs' => [
-				'class' => VerbFilter::className(),
-				'actions' => [
-					'delete' => ['POST'],
-				],
-			],
-		];
+        return [
+            'access' => [
+                'class' => AccessControl::className(),
+            ],
+            'verbs' => [
+                'class' => VerbFilter::className(),
+                'actions' => [
+                    'delete' => ['POST'],
+                ],
+            ],
+        ];
 	}
 
 	/**
@@ -92,22 +92,22 @@ class MailTemplateController extends Controller
 		$model = $this->findModel($id);
 
         if (Yii::$app->request->isPost) {
-			$model->load(Yii::$app->request->post());
-			// $postData = Yii::$app->request->post();
-			// $model->load($postData);
-			// $model->order = $postData['order'] ? $postData['order'] : 0;
+            $model->load(Yii::$app->request->post());
+            // $postData = Yii::$app->request->post();
+            // $model->load($postData);
+            // $model->order = $postData['order'] ? $postData['order'] : 0;
 
             if ($model->save()) {
-				Yii::$app->session->setFlash('success', Yii::t('app', 'Mail template success updated.'));
-				return $this->redirect(['index']);
-				//return $this->redirect(['view', 'id' => $model->template]);
+                Yii::$app->session->setFlash('success', Yii::t('app', 'Mail template success updated.'));
+                return $this->redirect(['index']);
+                //return $this->redirect(['view', 'id' => $model->template]);
 
             } else {
                 if (Yii::$app->request->isAjax) {
                     return \yii\helpers\Json::encode(\app\components\widgets\ActiveForm::validate($model));
                 }
-			}
-		}
+            }
+        }
 
 		$this->view->title = Yii::t('app', 'Update {model-class}: {template}', ['model-class' => 'Mail Template', 'template' => $model->template]);
 		$this->view->description = '';
@@ -124,7 +124,7 @@ class MailTemplateController extends Controller
 	 */
 	public function actionView($id)
 	{
-		$model = $this->findModel($id);
+        $model = $this->findModel($id);
 
 		$this->view->title = Yii::t('app', 'Detail {model-class}: {template}', ['model-class' => 'Mail Template', 'template' => $model->template]);
 		$this->view->description = '';
