@@ -80,7 +80,6 @@ class SettingController extends Controller
             if ($model->save()) {
                 Yii::$app->session->setFlash('success', Yii::t('app', 'Mailer setting success updated.'));
                 return $this->redirect(['update']);
-                //return $this->redirect(['view', 'id' => $model->id]);
 
             } else {
                 if (Yii::$app->request->isAjax) {
@@ -89,7 +88,7 @@ class SettingController extends Controller
             }
         }
 
-		$this->view->title = Yii::t('app', 'Mail Settings');
+		$this->view->title = Yii::t('app', 'Mailer Settings');
 		$this->view->description = '';
 		$this->view->keywords = '';
 		return $this->render('admin_update', [
@@ -103,13 +102,13 @@ class SettingController extends Controller
 	 * @param integer $id
 	 * @return mixed
 	 */
-	public function actionDelete($id)
+	public function actionDelete()
 	{
-		$model = $this->findModel($id);
+		$model = $this->findModel(1);
 		$model->delete();
 
-		Yii::$app->session->setFlash('success', Yii::t('app', 'Mailer setting success deleted.'));
-		return $this->redirect(['index']);
+		Yii::$app->session->setFlash('success', Yii::t('app', 'Mailer setting success reset.'));
+		return $this->redirect(Yii::$app->request->referrer ?: ['index']);
 	}
 
 	/**
