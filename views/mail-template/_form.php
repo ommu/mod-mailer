@@ -32,7 +32,7 @@ JS;
 ?>
 
 <?php $form = ActiveForm::begin([
-	'options' => ['class'=>'form-horizontal form-label-left'],
+	'options' => ['class' => 'form-horizontal form-label-left'],
 	'enableClientValidation' => false,
 	'enableAjaxValidation' => false,
 	//'enableClientScript' => true,
@@ -51,24 +51,24 @@ JS;
 
 <div id="header_footer" class="mb-10">
 	<?php echo $form->field($model, 'subject')
-		->textInput(['maxlength'=>true])
+		->textInput(['maxlength' => true])
 		->label($model->getAttributeLabel('subject')); ?>
 		
 	<?php 
 	$header = MailerMailTemplate::getTemplate('header');
 	echo $form->field($model, 'header_footer[header]')
-		->dropDownList($header, ['prompt'=>''])
+		->dropDownList($header, ['prompt' => ''])
 		->label($model->getAttributeLabel('header_footer[header]')); ?>
 		
 	<?php 
 	$footer = MailerMailTemplate::getTemplate('footer');
 	echo $form->field($model, 'header_footer[footer]')
-		->dropDownList($footer, ['prompt'=>''])
+		->dropDownList($footer, ['prompt' => ''])
 		->label($model->getAttributeLabel('header_footer[footer]')); ?>
 </div>
 
 <?php echo $form->field($model, 'template_file')
-	->textInput(['maxlength'=>true])
+	->textInput(['maxlength' => true])
 	->label($model->getAttributeLabel('template_file')); ?>
 
 <hr/>

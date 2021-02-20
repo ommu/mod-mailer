@@ -122,7 +122,7 @@ class MailerSetting extends \app\components\ActiveRecord
 		$this->templateColumns['_no'] = [
 			'header' => '#',
 			'class' => 'app\components\grid\SerialColumn',
-			'contentOptions' => ['class'=>'text-center'],
+			'contentOptions' => ['class' => 'text-center'],
 		];
 		$this->templateColumns['mail_contact'] = [
 			'attribute' => 'mail_contact',
@@ -193,7 +193,7 @@ class MailerSetting extends \app\components\ActiveRecord
 				return $this->filterYesNo($model->mail_queueing);
 			},
 			'filter' => $this->filterYesNo(),
-			'contentOptions' => ['class'=>'text-center'],
+			'contentOptions' => ['class' => 'text-center'],
 		];
 		$this->templateColumns['mail_smtp'] = [
 			'attribute' => 'mail_smtp',
@@ -201,7 +201,7 @@ class MailerSetting extends \app\components\ActiveRecord
 				return $this->filterYesNo($model->mail_smtp);
 			},
 			'filter' => $this->filterYesNo(),
-			'contentOptions' => ['class'=>'text-center'],
+			'contentOptions' => ['class' => 'text-center'],
 		];
 		$this->templateColumns['smtp_authentication'] = [
 			'attribute' => 'smtp_authentication',
@@ -209,7 +209,7 @@ class MailerSetting extends \app\components\ActiveRecord
 				return $this->filterYesNo($model->smtp_authentication);
 			},
 			'filter' => $this->filterYesNo(),
-			'contentOptions' => ['class'=>'text-center'],
+			'contentOptions' => ['class' => 'text-center'],
 		];
 		$this->templateColumns['smtp_ssl'] = [
 			'attribute' => 'smtp_ssl',
@@ -217,7 +217,7 @@ class MailerSetting extends \app\components\ActiveRecord
 				return $this->filterYesNo($model->smtp_ssl);
 			},
 			'filter' => $this->filterYesNo(),
-			'contentOptions' => ['class'=>'text-center'],
+			'contentOptions' => ['class' => 'text-center'],
 		];
 	}
 
@@ -256,24 +256,24 @@ class MailerSetting extends \app\components\ActiveRecord
 				
             if ($this->mail_smtp) {
                 if ($this->smtp_address == '') {
-                    $this->addError('smtp_address', Yii::t('app', '{attribute} cannot be blank.', ['attribute'=>$this->getAttributeLabel('smtp_address')]));
+                    $this->addError('smtp_address', Yii::t('app', '{attribute} cannot be blank.', ['attribute' => $this->getAttributeLabel('smtp_address')]));
                 }
 				
                 if ($this->smtp_port == '') {
-                    $this->addError('smtp_port', Yii::t('app', '{attribute} cannot be blank.', ['attribute'=>$this->getAttributeLabel('smtp_port')]));
+                    $this->addError('smtp_port', Yii::t('app', '{attribute} cannot be blank.', ['attribute' => $this->getAttributeLabel('smtp_port')]));
                 }
 
                 if ($this->smtp_ssl == '') {
-                    $this->addError('smtp_ssl', Yii::t('app', '{attribute} cannot be blank.', ['attribute'=>$this->getAttributeLabel('smtp_ssl')]));
+                    $this->addError('smtp_ssl', Yii::t('app', '{attribute} cannot be blank.', ['attribute' => $this->getAttributeLabel('smtp_ssl')]));
                 }
 				
                 if ($this->smtp_authentication) {
                     if ($this->smtp_username == '') {
-                        $this->addError('smtp_username', Yii::t('app', '{attribute} cannot be blank.', ['attribute'=>$this->getAttributeLabel('smtp_username')]));
+                        $this->addError('smtp_username', Yii::t('app', '{attribute} cannot be blank.', ['attribute' => $this->getAttributeLabel('smtp_username')]));
                     }
 
                     if ($this->smtp_password == '') {
-                        $this->addError('smtp_password', Yii::t('app', '{attribute} cannot be blank.', ['attribute'=>$this->getAttributeLabel('smtp_password')]));
+                        $this->addError('smtp_password', Yii::t('app', '{attribute} cannot be blank.', ['attribute' => $this->getAttributeLabel('smtp_password')]));
                     }
 				}
             }

@@ -39,7 +39,7 @@ JS;
 ?>
 
 <?php $form = ActiveForm::begin([
-	'options' => ['class'=>'form-horizontal form-label-left'],
+	'options' => ['class' => 'form-horizontal form-label-left'],
 	'enableClientValidation' => false,
 	'enableAjaxValidation' => false,
 	//'enableClientScript' => true,
@@ -53,17 +53,17 @@ JS;
 <?php //echo $form->errorSummary($model);?>
 
 <?php echo $form->field($model, 'mail_contact')
-	->textInput(['maxlength'=>true])
+	->textInput(['maxlength' => true])
 	->label($model->getAttributeLabel('mail_contact'))
 	->hint(Yii::t('app', 'Enter the email address you want contact form messages to be sent to.')); ?>
 
 <?php echo $form->field($model, 'mail_name')
-	->textInput(['maxlength'=>true])
+	->textInput(['maxlength' => true])
 	->label($model->getAttributeLabel('mail_name'))
 	->hint(Yii::t('app', 'Enter the name you want the emails from the system to come from in the field below.')); ?>
 
 <?php echo $form->field($model, 'mail_from')
-	->textInput(['maxlength'=>true])
+	->textInput(['maxlength' => true])
 	->label($model->getAttributeLabel('mail_from'))
 	->hint(Yii::t('app', 'Enter the email address you want the emails from the system to come from in the field below.')); ?>
 
@@ -94,11 +94,11 @@ echo $form->field($model, 'mail_smtp', ['template' => '{label}{beginWrapper}{hin
 
 <div id="smtp" <?php echo !$model->mail_smtp ? 'style="display: none;"' : ''; ?>>
 	<?php echo $form->field($model, 'smtp_address')
-		->textInput(['maxlength'=>true])
+		->textInput(['maxlength' => true])
 		->label($model->getAttributeLabel('smtp_address')); ?>
 
 	<?php echo $form->field($model, 'smtp_port')
-		->textInput(['maxlength'=>true])
+		->textInput(['maxlength' => true])
 		->label($model->getAttributeLabel('smtp_port'))
 		->hint(Yii::t('app', 'Default: 25. Also commonly on port 465 (SMTP over SSL) or port 587.')); ?>
 
@@ -114,11 +114,11 @@ echo $form->field($model, 'mail_smtp', ['template' => '{label}{beginWrapper}{hin
 
 	<div id="authentication" <?php echo !$model->smtp_authentication ? 'style="display: none;"' : ''; ?>>
 		<?php echo $form->field($model, 'smtp_username')
-			->textInput(['maxlength'=>true])
+			->textInput(['maxlength' => true])
 			->label($model->getAttributeLabel('smtp_username')); ?>
 
 		<?php echo $form->field($model, 'smtp_password')
-			->textInput(['maxlength'=>true])
+			->textInput(['maxlength' => true])
 			->label($model->getAttributeLabel('smtp_password')); ?>
 	</div>
 
