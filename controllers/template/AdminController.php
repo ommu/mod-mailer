@@ -1,10 +1,10 @@
 <?php
 /**
- * MailTemplateController
- * @var $this ommu\mailer\controllers\MailTemplateController
+ * AdminController
+ * @var $this ommu\mailer\controllers\template\AdminController
  * @var $model ommu\mailer\models\MailerMailTemplate
  *
- * MailTemplateController implements the CRUD actions for MailerMailTemplate model.
+ * AdminController implements the CRUD actions for MailerMailTemplate model.
  * Reference start
  * TOC :
  *	Index
@@ -22,7 +22,7 @@
  *
  */
 
-namespace ommu\mailer\controllers;
+namespace ommu\mailer\controllers\template;
 
 use Yii;
 use app\components\Controller;
@@ -31,7 +31,7 @@ use yii\filters\VerbFilter;
 use ommu\mailer\models\MailerMailTemplate;
 use ommu\mailer\models\search\MailerMailTemplate as MailerMailTemplateSearch;
 
-class MailTemplateController extends Controller
+class AdminController extends Controller
 {
 	/**
 	 * {@inheritdoc}

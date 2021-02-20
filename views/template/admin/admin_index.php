@@ -2,7 +2,7 @@
 /**
  * Mailer Mail Templates (mailer-mail-template)
  * @var $this app\components\View
- * @var $this ommu\mailer\controllers\MailTemplateController
+ * @var $this ommu\mailer\controllers\template\AdminController
  * @var $model ommu\mailer\models\MailerMailTemplate
  *
  * @author Putra Sudaryanto <putra@ommu.id>

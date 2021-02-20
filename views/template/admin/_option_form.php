@@ -1,15 +1,15 @@
 <?php
 /**
- * Mailer Mail Template Histories (mailer-mail-template-history)
+ * Mailer Mail Templates (mailer-mail-template)
  * @var $this app\components\View
- * @var $this ommu\mailer\controllers\MailTemplateHistoryController
- * @var $model ommu\mailer\models\search\MailerMailTemplateHistory
+ * @var $this ommu\mailer\controllers\template\AdminController
+ * @var $model ommu\mailer\models\search\MailerMailTemplate
  * @var $form yii\widgets\ActiveForm
  *
  * @author Putra Sudaryanto <putra@ommu.id>
  * @contact (+62)856-299-4114
  * @copyright Copyright (c) 2018 OMMU (www.ommu.id)
- * @created date 30 May 2018, 03:41 WIB
+ * @created date 23 May 2018, 10:56 WIB
  * @link https://github.com/ommu/mod-mailer
  *
  */

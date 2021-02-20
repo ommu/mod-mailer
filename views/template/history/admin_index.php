@@ -2,7 +2,7 @@
 /**
  * Mailer Mail Template Histories (mailer-mail-template-history)
  * @var $this app\components\View
- * @var $this ommu\mailer\controllers\MailTemplateHistoryController
+ * @var $this ommu\mailer\controllers\template\HistoryController
  * @var $model ommu\mailer\models\MailerMailTemplateHistory
  *
  * @author Putra Sudaryanto <putra@ommu.id>
@@ -21,7 +21,7 @@ use yii\widgets\Pjax;
 $this->params['breadcrumbs'][] = $this->title;
 
 $this->params['menu']['content'] = [
-	['label' => Yii::t('app', 'Back To Mail Templates'), 'url' => Url::to(['mail-template/index']), 'icon' => 'table'],
+	['label' => Yii::t('app', 'Back To Mail Templates'), 'url' => Url::to(['template/admin/index']), 'icon' => 'table'],
 ];
 $this->params['menu']['option'] = [
 	//['label' => Yii::t('app', 'Search'), 'url' => 'javascript:void(0);'],

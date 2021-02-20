@@ -1,10 +1,10 @@
 <?php
 /**
- * MailTemplateHistoryController
- * @var $this ommu\mailer\controllers\MailTemplateHistoryController
+ * HistoryController
+ * @var $this ommu\mailer\controllers\template\HistoryController
  * @var $model ommu\mailer\models\MailerMailTemplateHistory
  *
- * MailTemplateHistoryController implements the CRUD actions for MailerMailTemplateHistory model.
+ * HistoryController implements the CRUD actions for MailerMailTemplateHistory model.
  * Reference start
  * TOC :
  *	Index
@@ -21,7 +21,7 @@
  *
  */
 
-namespace ommu\mailer\controllers;
+namespace ommu\mailer\controllers\template;
 
 use Yii;
 use app\components\Controller;
@@ -30,7 +30,7 @@ use yii\filters\VerbFilter;
 use ommu\mailer\models\MailerMailTemplateHistory;
 use ommu\mailer\models\search\MailerMailTemplateHistory as MailerMailTemplateHistorySearch;
 
-class MailTemplateHistoryController extends Controller
+class HistoryController extends Controller
 {
 	/**
 	 * {@inheritdoc}

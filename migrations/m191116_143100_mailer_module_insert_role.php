@@ -24,9 +24,9 @@ class m191116_143100_mailer_module_insert_role extends \yii\db\Migration
 				['/mailer/setting/index', '2', '', time()],
 				['/mailer/setting/update', '2', '', time()],
 				['/mailer/setting/delete', '2', '', time()],
-				['/mailer/mail-template/*', '2', '', time()],
-				['/mailer/mail-template/index', '2', '', time()],
-				['/mailer/mail-template-history/*', '2', '', time()],
+				['/mailer/template/admin/*', '2', '', time()],
+				['/mailer/template/admin/index', '2', '', time()],
+				['/mailer/template/history/*', '2', '', time()],
 			]);
 		}
 
@@ -39,8 +39,8 @@ class m191116_143100_mailer_module_insert_role extends \yii\db\Migration
 				['mailerModLevelAdmin', '/mailer/setting/update'],
 				['mailerModLevelAdmin', '/mailer/setting/delete'],
 				['mailerModLevelModerator', '/mailer/setting/index'],
-				['mailerModLevelModerator', '/mailer/mail-template/*'],
-				['mailerModLevelModerator', '/mailer/mail-template-history/*'],
+				['mailerModLevelModerator', '/mailer/template/admin/*'],
+				['mailerModLevelModerator', '/mailer/template/history/*'],
 			]);
 		}
 	}

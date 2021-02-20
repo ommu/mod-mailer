@@ -2,7 +2,7 @@
 /**
  * Mailer Mail Template Histories (mailer-mail-template-history)
  * @var $this app\components\View
- * @var $this ommu\mailer\controllers\MailTemplateHistoryController
+ * @var $this ommu\mailer\controllers\template\HistoryController
  * @var $model ommu\mailer\models\MailerMailTemplateHistory
  *
  * @author Putra Sudaryanto <putra@ommu.id>
