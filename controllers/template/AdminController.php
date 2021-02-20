@@ -74,7 +74,7 @@ class AdminController extends Controller
 		$this->view->title = Yii::t('app', 'Mail Templates');
 		$this->view->description = '';
 		$this->view->keywords = '';
-		return $this->render('admin_index', [
+		return $this->render('admin_manage', [
 			'searchModel' => $searchModel,
 			'dataProvider' => $dataProvider,
 			'columns' => $columns,
