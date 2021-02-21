@@ -17,7 +17,8 @@ use yii\helpers\Html;
 use yii\helpers\Url;
 use yii\widgets\DetailView;
 
-$this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'Mail Templates'), 'url' => ['index']];
+$this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'Development Tools'), 'url' => ['/admin/module/manage']];
+$this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'Mail Template'), 'url' => ['manage']];
 $this->params['breadcrumbs'][] = $this->title;
 
 if (!$small) {
@@ -27,37 +28,49 @@ if (!$small) {
     ];
 } ?>
 
-<?php echo DetailView::widget([
+<?php
+$attributes = [
+    'template',
+    'subject',
+    'type',
+    [
+        'attribute' => 'header_footer',
+        'value' => serialize($model->header_footer),
+    ],
+    'template_file',
+	[
+		'attribute' => 'history',
+		'value' => function ($model) {
+            $histories = $model->getHistories(true);
+            return Html::a($histories, ['template/history/manage', 'template' => $model->primaryKey], ['title' => Yii::t('app', '{count} templates', ['count' => $histories])]);
+		},
+		'format' => 'html',
+		'visible' => !$small,
+	],
+    [
+        'attribute' => 'creation_date',
+        'value' => Yii::$app->formatter->asDatetime($model->creation_date, 'medium'),
+        'visible' => !$small,
+    ],
+    [
+        'attribute' => 'creationDisplayname',
+        'value' => isset($model->creation) ? $model->creation->displayname : '-',
+    ],
+    [
+        'attribute' => 'modified_date',
+        'value' => Yii::$app->formatter->asDatetime($model->modified_date, 'medium'),
+        'visible' => !$small,
+    ],
+    [
+        'attribute' => 'modifiedDisplayname',
+        'value' => isset($model->modified) ? $model->modified->displayname : '-',
+    ],
+];
+
+echo DetailView::widget([
 	'model' => $model,
 	'options' => [
 		'class' => 'table table-striped detail-view',
 	],
-	'attributes' => [
-		'template',
-		'subject',
-		'type',
-		[
-			'attribute' => 'header_footer',
-			'value' => serialize($model->header_footer),
-		],
-		'template_file',
-		[
-			'attribute' => 'creation_date',
-			'value' => Yii::$app->formatter->asDatetime($model->creation_date, 'medium'),
-			'visible' => !$small,
-		],
-		[
-			'attribute' => 'creationDisplayname',
-			'value' => isset($model->creation) ? $model->creation->displayname : '-',
-		],
-		[
-			'attribute' => 'modified_date',
-			'value' => Yii::$app->formatter->asDatetime($model->modified_date, 'medium'),
-			'visible' => !$small,
-		],
-		[
-			'attribute' => 'modifiedDisplayname',
-			'value' => isset($model->modified) ? $model->modified->displayname : '-',
-		],
-	],
+	'attributes' => $attributes,
 ]); ?>

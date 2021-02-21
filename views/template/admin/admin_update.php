@@ -17,7 +17,8 @@
 use yii\helpers\Html;
 use yii\helpers\Url;
 
-$this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'Mail Templates'), 'url' => ['index']];
+$this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'Development Tools'), 'url' => ['/admin/module/manage']];
+$this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'Mail Template'), 'url' => ['manage']];
 $this->params['breadcrumbs'][] = ['label' => $model->template, 'url' => ['view', 'id' => $model->template]];
 $this->params['breadcrumbs'][] = Yii::t('app', 'Update');
 

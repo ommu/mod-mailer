@@ -52,10 +52,18 @@ class AdminController extends Controller
 	}
 
 	/**
+	 * {@inheritdoc}
+	 */
+	public function actionIndex()
+	{
+        return $this->redirect(['manage']);
+	}
+
+	/**
 	 * Lists all MailerMailTemplate models.
 	 * @return mixed
 	 */
-	public function actionIndex()
+	public function actionManage()
 	{
         $searchModel = new MailerMailTemplateSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
@@ -71,7 +79,7 @@ class AdminController extends Controller
         }
         $columns = $searchModel->getGridColumn($cols);
 
-		$this->view->title = Yii::t('app', 'Mail Templates');
+		$this->view->title = Yii::t('app', 'Mail Template');
 		$this->view->description = '';
 		$this->view->keywords = '';
 		return $this->render('admin_manage', [

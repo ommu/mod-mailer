@@ -18,6 +18,7 @@ use yii\helpers\Url;
 use app\components\grid\GridView;
 use yii\widgets\Pjax;
 
+$this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'Development Tools'), 'url' => ['/admin/module/manage']];
 $this->params['breadcrumbs'][] = $this->title;
 
 $this->params['menu']['option'] = [

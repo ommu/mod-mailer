@@ -38,12 +38,14 @@ use app\models\Users;
 class MailerMailTemplate extends \app\components\ActiveRecord
 {
 	use \ommu\traits\FileTrait;
+	use \ommu\traits\UtilityTrait;
 
 	public $gridForbiddenColumn = ['header_footer', 'modified_date', 'modifiedDisplayname'];
 
 	// Variable Search
 	public $creationDisplayname;
 	public $modifiedDisplayname;
+    public $history;
 
 	/**
 	 * @return string the associated database table name
@@ -89,15 +91,25 @@ class MailerMailTemplate extends \app\components\ActiveRecord
 			'modified_id' => Yii::t('app', 'Modified'),
 			'creationDisplayname' => Yii::t('app', 'Creation'),
 			'modifiedDisplayname' => Yii::t('app', 'Modified'),
+			'history' => Yii::t('app', 'History'),
 		];
 	}
 
 	/**
 	 * @return \yii\db\ActiveQuery
 	 */
-	public function getHistories()
+	public function getHistories($count=false)
 	{
-		return $this->hasMany(MailerMailTemplateHistory::className(), ['template' => 'template']);
+        if ($count == false) {
+            return $this->hasMany(MailerMailTemplateHistory::className(), ['template' => 'template']);
+        }
+
+		$model = MailerMailTemplateHistory::find()
+            ->alias('t')
+            ->where(['template' => $this->template]);
+		$histories = $model->count();
+
+		return $histories ? $histories : 0;
 	}
 
 	/**
@@ -175,6 +187,16 @@ class MailerMailTemplate extends \app\components\ActiveRecord
 			'value' => function($model, $key, $index, $column) {
 				return $model->template_file;
 			},
+		];
+		$this->templateColumns['history'] = [
+            'attribute' => 'history',
+			'value' => function($model, $key, $index, $column) {
+				$histories = $model->getHistories(true);
+				return Html::a($histories, ['template/history/manage', 'template' => $model->primaryKey], ['title' => Yii::t('app', '{count} templates', ['count' => $histories]), 'data-pjax' => 0]);
+			},
+			'filter' => $this->filterYesNo(),
+			'contentOptions' => ['class' => 'text-center'],
+			'format' => 'raw',
 		];
 		$this->templateColumns['creation_date'] = [
 			'attribute' => 'creation_date',

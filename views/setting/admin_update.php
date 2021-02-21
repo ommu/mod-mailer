@@ -17,6 +17,7 @@
 use yii\helpers\Html;
 use yii\helpers\Url;
 
+$this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'Setting'), 'url' => ['update']];
 $this->params['breadcrumbs'][] = $this->title;
 
 $this->params['menu']['content'] = [

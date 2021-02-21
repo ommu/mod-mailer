@@ -51,10 +51,18 @@ class HistoryController extends Controller
 	}
 
 	/**
+	 * {@inheritdoc}
+	 */
+	public function actionIndex()
+	{
+        return $this->redirect(['manage']);
+	}
+
+	/**
 	 * Lists all MailerMailTemplateHistory models.
 	 * @return mixed
 	 */
-	public function actionIndex()
+	public function actionManage()
 	{
         $searchModel = new MailerMailTemplateHistorySearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);

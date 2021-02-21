@@ -18,11 +18,10 @@ use yii\helpers\Url;
 use app\components\grid\GridView;
 use yii\widgets\Pjax;
 
-$this->params['breadcrumbs'][] = $this->title;
+$this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'Development Tools'), 'url' => ['/admin/module/manage']];
+$this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'Mail Template'), 'url' => ['template/admin/manage']];
+$this->params['breadcrumbs'][] = Yii::t('app', 'Histories');
 
-$this->params['menu']['content'] = [
-	['label' => Yii::t('app', 'Back To Mail Templates'), 'url' => Url::to(['template/admin/index']), 'icon' => 'table'],
-];
 $this->params['menu']['option'] = [
 	//['label' => Yii::t('app', 'Search'), 'url' => 'javascript:void(0);'],
 	['label' => Yii::t('app', 'Grid Option'), 'url' => 'javascript:void(0);'],
