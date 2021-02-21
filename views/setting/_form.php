@@ -93,6 +93,11 @@ echo $form->field($model, 'mail_smtp', ['template' => '{label}{beginWrapper}{hin
 	->hint(Yii::t('app', 'Emails typically get sent through the web server using the PHP mail() function. Alternatively you can have emails sent out using SMTP, usually requiring a username and password, and optionally using an external mail server.')); ?>
 
 <div id="smtp" <?php echo !$model->mail_smtp ? 'style="display: none;"' : ''; ?>>
+
+    <hr/>
+
+    <legend><?php echo Yii::t('app', 'SMTP');?></legend>
+
 	<?php echo $form->field($model, 'smtp_address')
 		->textInput(['maxlength' => true])
 		->label($model->getAttributeLabel('smtp_address')); ?>
@@ -131,6 +136,21 @@ echo $form->field($model, 'mail_smtp', ['template' => '{label}{beginWrapper}{hin
 	echo $form->field($model, 'smtp_ssl')
 		->radioList($smtp_ssl)
 		->label($model->getAttributeLabel('smtp_ssl')); ?>
+</div>
+
+<div>
+    <hr/>
+
+    <legend><?php echo Yii::t('app', 'Blasting');?></legend>
+
+    <?php echo $form->field($model, 'blasting_delimiter_file')
+        ->textInput(['maxlength' => true])
+        ->label($model->getAttributeLabel('blasting_delimiter_file')); ?>
+
+	<?php echo $form->field($model, 'blasting_cronjob_limit')
+		->textInput(['maxlength' => true])
+		->label($model->getAttributeLabel('blasting_cronjob_limit')); ?>
+
 </div>
 
 <hr/>

@@ -24,6 +24,8 @@
  * @property string $smtp_username
  * @property string $smtp_password
  * @property integer $smtp_ssl
+ * @property string $blasting_delimiter_file
+ * @property integer $blasting_cronjob_limit
  * @property string $modified_date
  * @property integer $modified_id
  *
@@ -62,12 +64,14 @@ class MailerSetting extends \app\components\ActiveRecord
 	public function rules()
 	{
 		return [
-			[['mail_contact', 'mail_name', 'mail_from', 'mail_count', 'mail_queueing', 'mail_smtp'], 'required'],
-			[['mail_count', 'mail_queueing', 'mail_smtp', 'smtp_authentication', 'smtp_ssl', 'modified_id'], 'integer'],
-			[['smtp_address', 'smtp_username', 'smtp_password', 'modified_date'], 'safe'],
-			[['mail_contact', 'mail_name', 'mail_from', 'smtp_address', 'smtp_username', 'smtp_password'], 'string', 'max' => 32],
+			[['mail_contact', 'mail_name', 'mail_from', 'mail_count', 'mail_queueing', 'mail_smtp', 'blasting_delimiter_file'], 'required'],
+			[['mail_count', 'mail_queueing', 'mail_smtp', 'smtp_authentication', 'smtp_ssl', 'blasting_cronjob_limit', 'modified_id'], 'integer'],
+			[['smtp_address', 'smtp_username', 'smtp_password'], 'safe'],
+			[['mail_contact', 'mail_name', 'mail_from'], 'string', 'max' => 64],
+			[['smtp_address', 'smtp_username', 'smtp_password'], 'string', 'max' => 32],
 			[['smtp_port'], 'string', 'max' => 16],
 			[['mail_count'], 'string', 'max' => 3],
+			[['blasting_delimiter_file'], 'string', 'max' => 1],
 		];
 	}
 
@@ -90,6 +94,8 @@ class MailerSetting extends \app\components\ActiveRecord
 			'smtp_username' => Yii::t('app', 'SMTP Username'),
 			'smtp_password' => Yii::t('app', 'SMTP Password'),
 			'smtp_ssl' => Yii::t('app', 'Use SSL or TLS?'),
+			'blasting_delimiter_file' => Yii::t('app', 'CSV Delimiter'),
+			'blasting_cronjob_limit' => Yii::t('app', 'Conjob Limit'),
 			'modified_date' => Yii::t('app', 'Modified Date'),
 			'modified_id' => Yii::t('app', 'Modified'),
 			'modifiedDisplayname' => Yii::t('app', 'Modified'),
@@ -218,6 +224,18 @@ class MailerSetting extends \app\components\ActiveRecord
 			},
 			'filter' => $this->filterYesNo(),
 			'contentOptions' => ['class' => 'text-center'],
+		];
+		$this->templateColumns['blasting_delimiter_file'] = [
+			'attribute' => 'blasting_delimiter_file',
+			'value' => function($model, $key, $index, $column) {
+				return $model->blasting_delimiter_file;
+			},
+		];
+		$this->templateColumns['blasting_cronjob_limit'] = [
+			'attribute' => 'blasting_cronjob_limit',
+			'value' => function($model, $key, $index, $column) {
+				return $model->blasting_cronjob_limit;
+			},
 		];
 	}
 
