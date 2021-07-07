@@ -12,14 +12,16 @@
 
 use Yii;
 use app\models\Menu;
+use mdm\admin\components\Configs;
 
 class m191116_143100_mailer_module_insert_menu extends \yii\db\Migration
 {
 	public function up()
 	{
-		$tableName = Yii::$app->db->tablePrefix . 'ommu_core_menus';
+        $menuTable = Configs::instance()->menuTable;
+		$tableName = Yii::$app->db->tablePrefix . $menuTable;
         if (Yii::$app->db->getTableSchema($tableName, true)) {
-			$this->batchInsert('ommu_core_menus', ['name', 'module', 'icon', 'parent', 'route', 'order', 'data'], [
+			$this->batchInsert($tableName, ['name', 'module', 'icon', 'parent', 'route', 'order', 'data'], [
 				['Mailer Settings', 'mailer', null, Menu::getParentId('Settings#rbac'), '/mailer/setting/index', null, null],
 				['Mail Template', 'mailer', null, Menu::getParentId('Development Tools#rbac'), '/mailer/template/admin/index', null, null],
 			]);
