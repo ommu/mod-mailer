@@ -20,7 +20,7 @@
  *
  */
 
-namespace ommu\mailer\components\traits;
+namespace ommu\mailer\traits;
 
 use Yii;
 use yii\helpers\Html;
