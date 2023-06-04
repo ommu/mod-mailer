@@ -62,7 +62,8 @@ class MailerMailTemplate extends MailerMailTemplateModel
         if (!($column && is_array($column))) {
             $query = MailerMailTemplateModel::find()->alias('t');
         } else {
-            $query = MailerMailTemplateModel::find()->alias('t')->select($column);
+            $query = MailerMailTemplateModel::find()->alias('t')
+                ->select($column);
         }
 		$query->joinWith([
 			'creation creation', 

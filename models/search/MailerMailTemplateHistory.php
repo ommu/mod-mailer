@@ -63,7 +63,8 @@ class MailerMailTemplateHistory extends MailerMailTemplateHistoryModel
         if (!($column && is_array($column))) {
             $query = MailerMailTemplateHistoryModel::find()->alias('t');
         } else {
-            $query = MailerMailTemplateHistoryModel::find()->alias('t')->select($column);
+            $query = MailerMailTemplateHistoryModel::find()->alias('t')
+                ->select($column);
         }
 		$query->joinWith([
 			'templateRltn templateRltn', 
