@@ -10,7 +10,6 @@
  *
  */
 
-use Yii;
 use yii\db\Schema;
 
 class m210911_182425_mailer_module_create_table_setting extends \yii\db\Migration

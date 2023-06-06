@@ -10,7 +10,6 @@
  *
  */
 
-use Yii;
 use yii\db\Schema;
 
 class m210911_182534_mailer_module_create_table_mail_template_history extends \yii\db\Migration

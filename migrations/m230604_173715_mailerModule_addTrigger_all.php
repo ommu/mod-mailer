@@ -10,7 +10,6 @@
  *
  */
 
-use Yii;
 use yii\db\Schema;
 
 class m230604_173715_mailerModule_addTrigger_all extends \yii\db\Migration

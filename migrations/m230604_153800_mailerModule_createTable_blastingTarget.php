@@ -10,7 +10,6 @@
  *
  */
 
-use Yii;
 use yii\db\Schema;
 
 class m230604_153800_mailerModule_createTable_blastingTarget extends \yii\db\Migration
